@@ -18,4 +18,6 @@ public interface UserInfoService {
 	int countUser(UserInfoQueryVO query);
 
 	boolean updateUserInfo(UserInfo userInfo);
+
+	UserInfo getUserInfoById(int userId);
 }

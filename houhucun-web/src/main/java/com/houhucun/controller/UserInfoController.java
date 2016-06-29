@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.houhucun.controller.vo.Page;
@@ -24,11 +25,6 @@ public class UserInfoController {
 
 	@RequestMapping("list")
 	public String getUserInfo(ModelMap map, UserInfoQueryVO userInfoQuery) {
-
-		// userInfoQuery.setStartrownum((userInfoQuery.getPageNo() - 1)
-		// * userInfoQuery.getPageSize());
-		// userInfoQuery.setEndrownum(userInfoQuery.getPageSize());
-
 		int counts = userInfoService.countUser(userInfoQuery);
 		Page page = new Page();
 		if (userInfoQuery.getPageNo() == 0) {
@@ -53,6 +49,33 @@ public class UserInfoController {
 		return userInfoService.addUserInfo(userInfo);
 	}
 
+	@RequestMapping("reset")
+	@ResponseBody
+	public Object resetPassword(UserInfo userInfo) {
+		userInfo.setPassword(UserInitUtil.getInitPassword());
+		return userInfoService.addUserInfo(userInfo);
+	}
+
+	@RequestMapping("updatePwd")
+	@ResponseBody
+	public Object updatePassword(UserInfo userInfo) {
+		userInfo.setPassword(UserInitUtil.getPassword(userInfo.getPassword()));
+		return userInfoService.addUserInfo(userInfo);
+	}
+
+	@RequestMapping("update")
+	@ResponseBody
+	public Object update(UserInfo userInfo) {
+		userInfo.setYn(1);
+		return userInfoService.updateUserInfo(userInfo);
+	}
+
+	@RequestMapping("get")
+	@ResponseBody
+	public Object get(@RequestParam(value = "userId") int userId) {
+		return userInfoService.getUserInfoById(userId);
+	}
+
 	@RequestMapping("del")
 	@ResponseBody
 	public Object del(UserInfo userInfo) {
@@ -60,7 +83,7 @@ public class UserInfoController {
 		userInfoNew.setUserId(userInfo.getUserId());
 		userInfoNew.setYn(userInfo.getYn());
 		if (userInfoService.delUserInfo(userInfo.getUserId())) {
-			return "OK";
+			return "ok";
 		}
 		return "error";
 

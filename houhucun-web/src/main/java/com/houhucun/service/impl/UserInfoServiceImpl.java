@@ -44,8 +44,13 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Override
 	public boolean updateUserInfo(UserInfo userInfo) {
-		return userInfoMapper.updateByPrimaryKeySelective(userInfo) == 1 ? true
-				: false;
+		System.out.println(userInfo);
+		return userInfoMapper.updateByPrimaryKeySelective(userInfo) == 1 ? true : false;
+	}
+
+	@Override
+	public UserInfo getUserInfoById(int userId) {
+		return userInfoMapper.selectByPrimaryKey(userId);
 	}
 
 }

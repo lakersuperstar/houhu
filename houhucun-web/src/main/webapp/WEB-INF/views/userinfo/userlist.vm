@@ -8,7 +8,7 @@
 <script>
 function subBtn(){
 	var vali = true;
-	$(".require").each(function(){
+	$("#addForm").find(".require").each(function(){
 		if($(this).val()==""){
 			vali=false;
 			$(this).css("border","1px solid red");
@@ -16,7 +16,7 @@ function subBtn(){
 			$(this).css("border","1px solid #ddd");
 		}
 	});
-	$(".number").each(function(){
+	$("#addForm").find(".number").each(function(){
 		if(!/^\d*$/.test($(this).val())){
 			vali=false;
 			$(this).css("border","1px solid red");
@@ -33,7 +33,39 @@ function subBtn(){
 			}else{
 				alert("添加失败");
 			}
-			$("#subBtn").attr("onclick","subBtn()")
+			$("#subBtn").attr("onclick","subBtn()");
+		});
+	}
+}
+
+function updateBtn(){
+	var vali = true;
+	$("#updateForm").find(".require").each(function(){
+		if($(this).val()==""){
+			vali=false;
+			$(this).css("border","1px solid red");
+		}else{
+			$(this).css("border","1px solid #ddd");
+		}
+	});
+	$("#updateForm").find(".number").each(function(){
+		if(!/^\d*$/.test($(this).val())){
+			vali=false;
+			$(this).css("border","1px solid red");
+		}else{
+			$(this).css("border","1px solid #ddd");
+		}
+	});
+	if(vali){
+		$("#updateBtn").removeAttr("onclick");
+		var data = $("#updateForm").serialize();
+		$.post("$ctx/userInfo/update.action",data,function(data){
+			if(data=='true'){
+				queryBut(1);
+			}else{
+				alert("修改失败!");
+			}
+			$("#updateBtn").attr("onclick","updateBtn()");
 		});
 	}
 }
@@ -49,8 +81,8 @@ function del(id,state,item){
 	if(confirm("是否确认"+(state==1?"恢复":"删除")+"？")){
 		$(item).removeAttr("onclick");
 		$.post("${ctx}/userInfo/del",{userId:id,yn:state},function(data){
-			if(data=="ok"){
-				$("#queryForm").submit();
+			if(eval(data) == "ok"){
+				queryBut(1);
 			}else{
 				alert((state==1?"恢复":"删除")+"失败");
 				$(item).attr("onclick","del("+id+",state,this)");
@@ -58,6 +90,30 @@ function del(id,state,item){
 		});
 	}
 
+}
+
+
+function update(id){
+	$.post("${ctx}/userInfo/get",{userId:id},function(data){
+	if(data != null){
+	var userInfo = eval('('+data+')');
+	if(userInfo.userId == 0){
+	alert("获取不到用户信息!");
+	}else{
+	$("#updateForm").find("input[name='userId']").val(userInfo.userId);
+	$("#updateForm").find("input[name='userAccount']").val(userInfo.userAccount);
+	$("#updateForm").find("input[name='userName']").val(userInfo.userName);
+	$("#updateForm").find("input[name='mobile']").val(userInfo.mobile);
+	$("#updateForm").find("input[name='address']").val(userInfo.address);
+	$("#updateForm").find("input[name='role']").each(function (){
+	 $(this).val()==userInfo.yn ? $(this).attr("checked","checked"):null;
+	});
+	}
+	}else{
+	alert("获取不到用户信息!");
+	}
+			
+	});
 }
 </script>
 <div id="user_right">
@@ -124,7 +180,8 @@ function del(id,state,item){
 				<td>$!date.format('yyyy-MM-dd HH:mm:ss',$!record.createDate)</td>
 				<td>#if($!{record.yn}==0) 无效 #else 有效 #end</td>
 				<td>#if($!{record.yn}==1) <a class="font_main"
-					onclick="del($!record.userId,0,this)">删除</a> #else <a
+					onclick="del($!record.userId,0,this)">删除</a> &nbsp <a class="font_main" data-toggle="modal"  href="#channel03"
+					onclick="update($!record.userId)">修改</a> #else <a
 					onclick="del($!record.userId,1,this)" class="font_main">恢复</a> #end
 				</td>
 			</tr>
@@ -160,7 +217,7 @@ function del(id,state,item){
 			<div class="row cl">
 				<label class="form-label col-xs-3">手机号：</label>
 				<div class="formControls col-xs-5">
-					<input type="text" class="input-text require" name="mobile">
+					<input type="text" class="input-text require number" name="mobile">
 				</div>
 			</div>
 			<div class="row cl">
@@ -184,3 +241,58 @@ function del(id,state,item){
 	</div>
 </div>
 <!--增加库房 end-->
+
+
+
+
+<!--修改库房 弹出层-->	<div id="channel03" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div class="modal-header">
+		<h3 id="myModalLabel">修改用户</h3>
+		<a class="close" data-dismiss="modal" aria-hidden="true"
+			href="javascript:void();">×</a>
+	</div>
+	<div class="modal-body">
+		<form action="" method="post" class="form form-horizontal responsive"
+			id="updateForm">
+			<div class="row cl">
+				<label class="form-label col-xs-3">用户账号：</label>
+				<div class="formControls col-xs-5"><input type="hidden"  name="userId">
+					<input type="text" class="input-text require" name="userAccount" disabled="disabled" >
+				</div>
+			</div>
+			<div class="row cl">
+				<label class="form-label col-xs-3">用户姓名：</label>
+				<div class="formControls col-xs-5">
+					<input type="text" class="input-text require" name="userName">
+				</div>
+			</div>
+			<div class="row cl">
+				<label class="form-label col-xs-3">手机号：</label>
+				<div class="formControls col-xs-5">
+					<input type="text" class="input-text require number" name="mobile">
+				</div>
+			</div>
+			<div class="row cl">
+				<label class="form-label col-xs-3">联系地址：</label>
+				<div class="formControls col-xs-5">
+					<input type="text" class="input-text require" name="address">
+				</div>
+			</div>
+			<div class="row cl">
+				<label class="form-label col-xs-3">角色：</label>
+				<div class="formControls col-xs-5">
+					<input type="radio" class="input" name="role" value="1">后台账号
+					<input type="radio" class="input" name="role" value="2"
+						checked="true">前台账号
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary radius" id="subBtn" onclick="updateBtn()">提交</button>
+	</div>
+</div>
+<!--修改库房 end-->
+
+
+
