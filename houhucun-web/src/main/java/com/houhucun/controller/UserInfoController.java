@@ -55,11 +55,11 @@ public class UserInfoController {
 
 	@RequestMapping("del")
 	@ResponseBody
-	public Object del(UserInfo userInfo) {	
+	public Object del(UserInfo userInfo) {
 		UserInfo userInfoNew = new UserInfo();
-		if (userInfo.getYn() == 0 ){
-					}
-				&& userInfoService.delUserInfo(userInfo.getUserId())) {
+		userInfoNew.setUserId(userInfo.getUserId());
+		userInfoNew.setYn(userInfo.getYn());
+		if (userInfoService.delUserInfo(userInfo.getUserId())) {
 			return "OK";
 		}
 		return "error";

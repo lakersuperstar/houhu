@@ -45,11 +45,11 @@ function queryBut(page){
 
 }
 
-function del(id,state){
+function del(id,state,item){
 	if(confirm("是否确认"+(state==1?"恢复":"删除")+"？")){
 		$(item).removeAttr("onclick");
-		$.post("${ctx}/storeRoom/del",{userId:id,yn:state},function(data){
-			if(data=="true"){
+		$.post("${ctx}/userInfo/del",{userId:id,yn:state},function(data){
+			if(data=="ok"){
 				$("#queryForm").submit();
 			}else{
 				alert((state==1?"恢复":"删除")+"失败");
@@ -124,8 +124,8 @@ function del(id,state){
 				<td>$!date.format('yyyy-MM-dd HH:mm:ss',$!record.createDate)</td>
 				<td>#if($!{record.yn}==0) 无效 #else 有效 #end</td>
 				<td>#if($!{record.yn}==1) <a class="font_main"
-					onclick="del($!record.userId,0)">删除</a> #else <a
-					onclick="del($!record.userId,1)" class="font_main">恢复</a> #end
+					onclick="del($!record.userId,0,this)">删除</a> #else <a
+					onclick="del($!record.userId,1,this)" class="font_main">恢复</a> #end
 				</td>
 			</tr>
 			#end
