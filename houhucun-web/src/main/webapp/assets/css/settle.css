@@ -1,0 +1,20 @@
+@charset "utf-8";
+/*提交订单结算*/
+#indent_settle{ width:100%; height:auto; margin:0 auto; overflow: hidden; padding:50px 0}
+#indent_settle .indent_settle{ width:1200px; margin:0 auto; overflow:hidden;}
+#indent_settle .indent_settle_content{ width:100%; min-height:420px; background:#fff; overflow: hidden;}
+#indent_settle .indent_settle_cont{ margin:20px 30px; height:auto;}
+#indent_settle .settle_cont_top{ width:100%; min-height:115px; border-bottom:1px solid #e5e5e5;}
+#indent_settle .settle_cont_top h1{ font-size:26px;}
+#indent_settle .settle_cont_top p{ line-height:40px; font-size:14px; }
+#indent_settle .left_prompt{ width:60%;}
+#indent_settle .right_rental{ min-width:250px; height:50px; }
+#indent_settle .right_rental .money{ font-size:26px;}
+#indent_settle .down{ width:8px; height:5px; background:url("../images/basic_icon.png") -87px -110px no-repeat; margin:2px 5px;}
+#indent_settle .settle_cont_bottom{ padding-top:30px;}
+#indent_settle .settle_cont_bottom li{ font-size:14px; line-height:30px; color:#757575;}
+#indent_settle .settle_cont_bottom li label{ display:inline-block; width:70px; text-align: right;}
+#indent_settle .indent_settle_cont dt{ font-size:18px; line-height:40px; }
+#indent_settle .indent_settle_cont dd a{ display:inline-block; width:170px; height:60px; line-height:60px; text-align:center; font-size:14px;border:1px solid #e5e5e5; margin:15px 10px 15px 0;}
+#indent_settle .indent_settle_cont dd img{ width:150px; height:40px; margin:10px;}
+#hide_indent_settle{ display:none;}

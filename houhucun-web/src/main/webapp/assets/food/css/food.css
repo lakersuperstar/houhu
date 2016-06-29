@@ -1,0 +1,300 @@
+.unified-header {
+	width: 100%;
+	padding: 0px !important;
+	position: relative;
+	z-index: 101;
+}
+
+.unified-header #upper-background {
+	background: white;
+}
+
+.unified-header #upper-wrapper {
+	margin: 0 auto;
+	width: 1020px;
+	background: white;
+	padding: 20px 15px;
+}
+
+.unified-header .upper {
+	height: 50px;
+	position: relative;
+}
+
+.unified-header .social .logo, .unified-header #logo .channel-logo {
+	float: left;
+	width: 287px;
+	height: 50px;
+	margin: 0;
+	background-position: 0px -830px;
+}
+
+.unified-header .social .logo, .unified-header .reactions li.reaction a,
+	.unified-header .vertical_title a {
+	background:
+		url(https://webappstatic.buzzfeed.com/static/images/global/unified_sprite.png?v=1465860945);
+	text-indent: -9999em;
+	background-repeat: no-repeat;
+}
+
+.unified-header #lower-background {
+	min-width: 1020px;
+	background: #EAEAEA;
+}
+
+.unified-header #lower-wrapper {
+	margin: 0 auto;
+	width: 990px;
+	background: white;
+	padding: 0 15px;
+	height: 50px;
+	background: #EAEAEA;
+	padding: 0px;
+	width: 1020px;
+}
+
+.unified-header .lower {
+	height: 50px;
+	position: relative;
+	display: block;
+	z-index: 99;
+}
+
+.unified-header .lower .nav-left {
+	float: left;
+	margin-left: 10px;
+	height: 50px;
+}
+
+.unified-header .lower .menu-item {
+	float: left;
+	height: 50px;
+}
+
+.unified-header .lower .menu-item>span {
+	position: relative;
+	font-size: 21px;
+	color: #111;
+}
+
+.unified-header .lower .nav-left .menu-item>span>a {
+	color: #111;
+	float: left;
+	padding: 12px 20px 13px;
+	text-decoration: none;
+}
+
+.unified-header .lower .nav-right {
+	float: right;
+	margin-top: 11px;
+}
+
+.unified-header .page-search {
+	float: left;
+	position: relative;
+	top: 9px;
+}
+
+.page-search {
+	height: 26px;
+}
+
+.page-search .page-search__form {
+	position: relative;
+}
+
+.page-search .page-search__input {
+	width: 26px;
+	height: 26px;
+	background: #fff;
+	border: 1px solid #e2e2e2;
+	padding: 0;
+	opacity: 0;
+	-webkit-transition: opacity 0.1s, width 0.3s;
+	-moz-transition: opacity 0.1s, width 0.3s;
+	transition: opacity 0.1s, width 0.3s;
+}
+
+.page-search .page-search__search-button {
+	padding: 0;
+	margin: 0;
+	background: none;
+	border: 0;
+}
+
+.page-search .page-search__search-button {
+	position: absolute;
+	top: 0;
+	right: 4px;
+	padding: 4px;
+	width: 26px;
+	height: 26px;
+	line-height: 26px;
+	font-size: 18px;
+}
+
+.title-bar {
+	width: 100%;
+	height: 138px;
+	margin-bottom: 40px;
+	line-height: 138px;
+	color: #fff;
+	font-weight: 100;
+	font-size: 65px;
+}
+
+.title-bar--vertical {
+	font-weight: 600;
+	font-size: 36px;
+	color: #000;
+	margin-bottom: 0;
+	line-height: 1;
+	height: auto;
+	padding: 30px 0 23px;
+}
+
+.title-bar--vertical .page-container {
+	width: 1015px !important;
+}
+
+.page-container, .PageContainer {
+	width: 1000px;
+	margin: 0 auto;
+	padding-left: 15px;
+	box-sizing: border-box;
+}
+
+.clear {
+	content: '';
+	height: 1px;
+	font-size: 0;
+	line-height: 0;
+	clear: both;
+	overflow: hidden;
+	visibility: hidden;
+}
+
+.PageContent {
+	width: 625px;
+	margin-left: 29;
+	float: left;
+}
+
+.content {
+	width: 100%;
+	padding: 10px;
+}
+
+.content .grid-posts>li {
+	border-bottom: 1px solid #eee;
+	padding: 20px 0 17px;
+	margin-bottom: 0;
+	width: 100%;
+}
+
+.lege {
+	overflow: hidden;
+}
+
+.lede__link {
+	display: block;
+	float: left;
+	margin-right: 15px;
+	position: relative;
+	width: 125px;
+	height: 83px;
+}
+
+.lede__link img {
+	width: 100%;
+	height: 100%;
+}
+
+.lede__body {
+	padding-left: 140px;
+	height: 90px
+}
+
+.lede__title {
+	margin: 0;
+	color: #333;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 1.2;
+	display: inline-block;
+}
+
+.lede__title a{
+	text-decoration: none;
+}
+
+.lede__kicker {
+	font-weight: 400;
+	font-size: 15px;
+	color: #222;
+	line-height: 1.2;
+	margin: 7px 0 0;
+	display: inline-block;
+}
+
+.small-meta {
+	font-size: 11px;
+	margin-top: 5px;
+}
+
+.small-meta__item {
+	color: #aaa;
+	font-size: 11px;
+	display: inline-block;
+	margin-left: 5px;
+}
+
+.small-meta__item a {
+	color: #aaa;
+	text-decoration: none;
+}
+
+.btn--buzz {
+	display: inline-block;
+	width: 88px;
+	height: 42px;
+	background: #07e;
+	color: #fff;
+	font-size: 16px;
+	text-align: center;
+	line-height: 42px;
+	text-decoration: none;
+}
+
+.btn--buzz.btn--buzz--disabled {
+	opacity: .3;
+}
+
+.Column2 {
+	float: right;
+	width: 330px;
+}
+
+.connect-widget__title {
+	text-align: center;
+	position: relative;
+	overflow: hidden;
+	font-weight: 300;
+	font-size: 18px;
+	margin-top: 0;
+	margin-bottom: 15px;
+}
+
+.aditem img {
+	width: 100%;
+	height: 105px;
+}
+
+.aditem p {
+	font-size: 18px;
+	line-height: 20px;
+	font-weight: 600;
+	text-shadow: 1px 1px 0 white;
+	margin: 5px 0;
+	float: left;
+}

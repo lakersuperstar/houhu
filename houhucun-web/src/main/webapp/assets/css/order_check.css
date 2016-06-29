@@ -1,0 +1,111 @@
+@charset "utf-8";
+/* CSS Document */
+/*核对订单*/
+#order_check{ width:100%; height:auto; margin:0 auto; padding:40px 0;}
+#order_check .order_check{ width:1140px; min-height:500px; background:#fff; margin:0 auto; padding:20px 30px;}
+#order_check .order_check dl{ border-bottom:1px solid #e5e5e5;}
+#order_check dl dt{ font-size:20px; line-height:40px; width:80px; text-align:right; margin-right:25px;}
+/*核对订单-收货地址*/
+#order_check .address .dd_address{ padding-left:100px; height:160px; overflow-y: auto;}
+#order_check .address .dd_address p{ width:900px; height:30px; line-height: 30px;  margin-top:10px; font-size:14px;}
+#order_check .active_p{ background:#d4eaf1;}
+#order_check .active_span{ width:140px; height:26px; line-height:26px; text-align: center; border:2px solid #e5e5e5; background:#fff;}
+#order_check .active_p .active_span{ border-color:#0b6fad; color:#0b6fad;}
+#order_check .active_b{ width:16px; height:15px; background:url("../images/basic_icon.png") -421px -22px no-repeat; position:absolute; right:0; bottom:0;}
+#order_check .address .mo_address{ height:20px; line-height:20px;margin-top:5px; padding:0 5px; background:#999; color:#fff;}
+#order_check .address .sp_address{ max-width:500px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; word-wrap: normal;}
+#order_check .address .pack_up{ margin:10px 0 30px 100px;}
+#order_check .address .pack_up_icon{ width:8px; height:8px; background:url("../images/basic_icon.png") -552px -110px no-repeat; margin-left:5px;}
+/*核对订单-支付方式和配送方式*/
+#order_check .payment,#order_check .dist{ height:40px;}
+#order_check .comment{ height:110px;}
+#order_check .payment dd{ height:40px; line-height:40px; padding-top:2px;}
+#order_check .payment .radio-box .iradio-blue{ top:10px;}
+#order_check .payment .radio-box .font_sup{ bottom:-25px; left:5px; display:inline-block; width:300px;}
+/*核对订单-配送时间*/
+#order_check .delivery_time{ height:110px;}
+#order_check .delivery_time dd div{ float:none;}
+#order_check .delivery_time .radio-box{ display:block; margin-top:10px;}
+/*核对订单-发票*/
+.modal-scrollable .myModal_modal{ width:500px; margin-left:-250px;}
+/*核对订单-商品信息*/
+#order_check .right_arrow{ width:8px; height:12px; background:url("../images/basic_icon.png") -146px -110px no-repeat; margin-left:5px;}
+#order_check .proInfo_dd table{ width:1130px; height:auto; background:#f8fcff; border:1px dashed #c3e1f9; }
+#order_check .comment .sp01{ font-size:20px; line-height:40px; width:80px; text-align:right; margin-right:25px;}
+#order_check .comment textarea{ width:500px; height:80px; line-height:30px; border:none;margin-top:5px;}
+/*核对订单-参数*/
+#order_check .product_infor{ min-height:200px; padding:35px 0 20px 0; border-bottom:1px solid #e5e5e5;}
+#order_check .product_infor .right_parameter{ width:300px; height:100%; }
+#order_check .right_parameter label,#order_check .right_parameter span{ display:inline-block;text-align: right;font-size:14px; min-width:150px; line-height:30px;}
+#order_check .right_parameter .money{ font-size:24px;}
+#order_check .product_left{ min-height:200px;}
+#order_check .product_infor .coupon{ width:22px; height:22px; background:url("../images/basic_icon.png") -199px -195px no-repeat;}
+#order_check .product_left .kt_number{ width:300px;bottom:0px; left:0;}
+/*核对订单-结算*/
+#order_check .bottom_settle{ height:80px;}
+
+/*弹出层*/
+#myModal .modal-header{ padding:0 15px; background:#f8f8f8; border-radius:6px 6px 0 0;}
+#myModal .modal-header h3{ padding-top:10px;}
+#myModal .modal-header .close{ top:0px;}
+#myModal .modal-body ul{ margin:0 auto; padding:50px 0;}
+#myModal .modal-body ul input{ width:300px; height:30px; line-height:30px;}
+#myModal .modal-body ul label{ display:inline-block; width:110px; text-align: right;}
+#myModal .pos_span{ right:50px; top:5px;}
+#myModal .modal-body ul .cont_span{ display:inline-block; padding:5px 15px; border:1px solid #e5e5e5; cursor:pointer;}
+#myModal .modal-body ul .active_input,#myModal .modal-body ul .active_cont_span{ border:2px solid #0b6fad;}
+.button_active{ display:inline-block; padding:5px 15px; background:#0b6fad; color:#fff; border-radius:4px;}
+.button_active:hover{ color:#fff; }
+.li_marl{ margin-left:110px;}
+#myModal .modal-body ul .last_li span{ font-size:12px;}
+/*编辑弹出层*/
+#compile{ width:600px; margin-left:-300px;}
+/*技术服务核对订单*/
+.return{ top:10px; right:0px;}
+.set_table .package{width:1135px; border: 1px dashed #c3e1f9; background: #f8fcff;}
+.set_table table td{ overflow:hidden; white-space:nowrap; text-overflow: ellipsis;}
+
+/*商品标题列表*/
+#order_check  .tab_content_title{ width:100%; height:30px; line-height:30px;}
+#order_check  .tab_content_title li{text-align: center; float:left;}
+#order_check  .tab_content_title li:first-child{ width:265px; text-align: left; padding-left:15px;}
+#order_check  .tab_content_title .pic{ width:265px;}
+#order_check  .tab_content_title .norms{ width:180px;}
+#order_check  .tab_content_title .unit{ width:130px;}
+#order_check  .tab_content_title .number{ width:130px;}
+#order_check  .tab_content_title .money{ width:150px;}
+#order_check  .tab_content_title .operation{ width:250px;}
+/*商品内容列表*/
+#order_check .proInfo .table_cont{ padding:10px 0; height:55px;}
+#order_check .table_cont li{ float:left;}
+#order_check .check-box{ padding:0px 0 0 25px;}
+#order_check .check-box .icheckbox-blue{ top:4px;}
+#order_check .table_cont li:first-child span{ line-height:80px;}
+#order_check .table_cont .pic img{ width:52px; height:52px;margin-right:10px;background:#fff;}
+#order_check .table_cont .pic p{ width:150px; line-height:30px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+#order_check .table_cont .pic .risk{display:inline-block; margin:0 0 0 5px;}
+#order_check .table_cont .pic div{ width:210px; height:16px; bottom:0px; left:0px;}
+#order_check .table_cont .pic div img{ margin-right:5px; cursor:pointer;}
+#order_check .table_cont .pic div .pay01{width:16px; height:16px;}
+#order_check .table_cont .pic div .pay02{width:14px; height:16px;}
+#order_check .table_cont .pic div .pay03{width:14px; height:16px;}
+#order_check .table_cont .pic div .pay04{width:16px; height:10px;}
+#order_check .table_cont .pic div .pay05{width:43px; height:16px;}
+#order_check .number a,#order_check .number input{ display:block; float:left; width:16px; height:18px; line-height:18px; text-align: center; border:1px solid #e5e5e5; background:#f8f8f8;}
+#order_check .number input{width:38px; background:#fff; float:none; }
+#order_check .table_cont .pic{ width:280px;}
+#order_check .table_cont .pic dd{ height:50px;}
+#order_check .table_cont .norms{ width:150px; color:#999; line-height:20px; padding-left: 30px; margin:0 auto;}
+#order_check .table_cont .norms_div{ width:40px; margin:0 auto;}
+#order_check .table_cont .unit{ width:130px;line-height:20px;}
+#order_check .table_cont .number{ width:130px;}
+#order_check .table_cont .money{ width:150px; font-size:16px;}
+#order_check  .invalid{ background:#e2e2e2;}
+#order_check  .invalid ul li:first-child{ margin:0 10px 0 -10px;}
+#order_check .express{ margin:0 30px 0 -20px;}
+#order_check .proInfo_dd .ac_span,#order_check .set_table .ac_span{width:auto; padding:0 20px; height:26px; line-height:26px; text-align: center; border:2px solid #e5e5e5; background:#fff; cursor:pointer;}
+#order_check .proInfo_dd .active_span,#order_check .set_table .active_span{ border-color:#0b6fad; color:#0b6fad;}
+#order_check .proInfo_dd .active_span .pub_b,#order_check .set_table .active_span .pub_b{ width:16px; height:15px; background:url("../images/basic_icon.png") -421px -22px no-repeat; position:absolute; right:0; bottom:0;}
+
+
+

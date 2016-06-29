@@ -1,0 +1,10 @@
+@charset "utf-8";
+/* CSS Document */
+/*收货地址*/
+.ship_address{ min-height:190px; padding:10px; border:1px dashed #eaeaea;}
+.ship_address_cont li{ width:70%;}
+.ship_address_cont label{ display:inline-block; width:100px; text-align:right;}
+.ship_address_cont .icheckbox-blue{ top:2px; left:20px;}
+.ship_address .mo_address{height: 20px; line-height: 20px; margin-top: 5px; padding: 0 5px; background: #999; color: #fff;}
+.ship_address .ship_address_btn{ width:10%; top:30px; right:0px;}
+.new_address_cont{ display:none; padding-bottom:50px;}

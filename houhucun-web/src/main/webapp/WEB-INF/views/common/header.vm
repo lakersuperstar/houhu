@@ -1,0 +1,30 @@
+<!--头部 start-->
+<div id="header">
+	<!--head_top start-->
+	<div class="head_top">
+		<ul>
+			<li class="fl">您好，欢迎来到后胡村！</li>
+			<li class="fr font_sup"><a href="javascript:;">admin_01<i
+					class="down01"></i></a></li>
+			<li class="fr"><span><a href="javascript:;">登录</a></span><i
+				class="i02">/</i></li>
+		</ul>
+	</div>
+	<!--head_top end-->
+	<!--header_center start-->
+	<div class="head">
+		<div class="head_logo logo_mar">
+			<a href="javascript:;"><img
+				src="$staticPath/images/head_logo.png"></a>
+		</div>
+		<!--logo end-->
+		<ul class="fl logo_right_nav">
+			<li class="fl active"><a href="javascript:;" class="font_14">管理中心</a></li>
+		</ul>
+		<!--logo_right_nav end-->
+
+		<!--head_search end-->
+	</div>
+	<!--header_center start-->
+</div>
+<!--头部 end-->

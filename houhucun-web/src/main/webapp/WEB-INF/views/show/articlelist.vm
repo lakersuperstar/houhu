@@ -1,0 +1,48 @@
+#set($layout="showlayout.vm")
+#set($staticPath1="$request.contextPath/assets")
+#set($ctx="$request.contextPath")
+<div>
+	<form id="queryForm" action="list" method="get">
+		<input name="pageNo" type="hidden" /> <input name="title"
+			value="$!{articleListQueryVO.title}" type="hidden">
+	</form>
+	<ul class="grid-posts">
+		#foreach($record in $articles)
+		<li id="post-4150847"
+			class="grid-posts__item track   first  has-like-button">
+			<div class="lede ">
+				<a class="lede__link"> <img
+					src="http://photocdn.sohu.com/20150822/Img419491467.jpg" />
+				</a>
+				<div class="lede__body">
+					<h2 class="lede__title lede__title--medium">
+						<a href="$!{ctx}/show/article/$!{record.id}">$!{record.title}</a>
+					</h2>
+					<p class="lede__kicker">$!{record.summary}</p>
+					<div class="small-meta">
+						<div class="small-meta__item">
+							<a href="/jessicamisener?language=en">$!{record.writer}</a>
+						</div>
+						<div class="small-meta__item small-meta__item--timestamp">
+							<time class="small-meta__item__time-ago">$!date.format('yyyy-MM-dd
+								HH:mm:ss',$!record.createTime)</time>
+						</div>
+						<div class="small-meta__item small-meta__item--comment">
+							<a
+								href="/jessicamisener/if-slogans-for-chain-restaurants-were-honest#respond">
+								<span class="num">212</span>responses
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li> #end
+	</ul>
+</div>
+<div class="footer">
+	<a href="javascript:queryBut('$lastPage');"
+		class="btn--buzz btn--buzz--inline">上一页</a>
+	<!-- 	<span class="btn--buzz btn--buzz--disabled btn--buzz--inline">下一页</span> -->
+	<a href="javascript:queryBut('$nextPage');"
+		class="btn--buzz btn--buzz--inline">下一页</a>
+</div>

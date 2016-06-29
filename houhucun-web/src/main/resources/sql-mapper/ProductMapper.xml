@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.houhucun.mapper.ProductMapper">
+	<resultMap id="BaseResultMap" type="com.houhucun.domain.Product">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="type_id" property="typeId" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="total_weight" property="totalWeight" jdbcType="DECIMAL" />
+		<result column="net_weight" property="netWeight" jdbcType="DECIMAL" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="yn" property="yn" jdbcType="INTEGER" />
+		<result column="origin" property="origin" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="type_name" property="typeName" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, type_id, user_id, total_weight, net_weight,
+		create_time, update_time,
+		yn, origin,name
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from product
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		product
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.houhucun.domain.Product">
+		insert into product ( type_id,
+		user_id,
+		total_weight, net_weight, create_time,
+		yn, origin,name
+		)
+		values
+		(#{typeId,jdbcType=INTEGER},
+		#{userId,jdbcType=INTEGER},
+		#{totalWeight,jdbcType=DECIMAL},
+		#{netWeight,jdbcType=DECIMAL}, now(),
+		1,
+		#{origin,jdbcType=VARCHAR}, #{origin,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.houhucun.domain.Product">
+		insert into product
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="typeId != null">
+				type_id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="totalWeight != null">
+				total_weight,
+			</if>
+			<if test="netWeight != null">
+				net_weight,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+			<if test="yn != null">
+				yn,
+			</if>
+			<if test="origin != null">
+				origin,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="typeId != null">
+				#{typeId,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="totalWeight != null">
+				#{totalWeight,jdbcType=DECIMAL},
+			</if>
+			<if test="netWeight != null">
+				#{netWeight,jdbcType=DECIMAL},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="yn != null">
+				#{yn,jdbcType=INTEGER},
+			</if>
+			<if test="origin != null">
+				#{origin,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.houhucun.domain.Product">
+		update product
+		<set>
+			<if test="typeId != null">
+				type_id = #{typeId,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="totalWeight != null">
+				total_weight = #{totalWeight,jdbcType=DECIMAL},
+			</if>
+			<if test="netWeight != null">
+				net_weight = #{netWeight,jdbcType=DECIMAL},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="yn != null">
+				yn = #{yn,jdbcType=INTEGER},
+			</if>
+			<if test="origin != null">
+				origin = #{origin,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.houhucun.domain.Product">
+		update product
+		set
+		type_id = #{typeId,jdbcType=INTEGER},
+		user_id =
+		#{userId,jdbcType=INTEGER},
+		total_weight =
+		#{totalWeight,jdbcType=DECIMAL},
+		net_weight =
+		#{netWeight,jdbcType=DECIMAL},
+		create_time =
+		#{createTime,jdbcType=TIMESTAMP},
+		update_time =
+		#{updateTime,jdbcType=TIMESTAMP},
+		yn = #{yn,jdbcType=INTEGER},
+		origin =
+		#{origin,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<select id="countProductByParam" parameterType="com.houhucun.domain.ProductQueryVO"
+		resultType="java.lang.Integer">
+		select
+		count(1) as countNum from product
+		<where>
+			<if test="name != null and name != ''">
+				name like CONCAT(CONCAT('%',
+				#{name,jdbcType=VARCHAR}),'%')
+			</if>
+			<if test="type != 0">
+				and type_id = #{type}
+			</if>
+		</where>
+	</select>
+	<select id="selectByParam" resultMap="BaseResultMap"
+		parameterType="com.houhucun.domain.ProductQueryVO">
+		select
+		a.id, b.name as typeName, a.user_id, a.total_weight,
+		a.net_weight,
+		a.create_time,
+		a.update_time,
+		a.yn, a.origin,a.name
+		from
+		product a left join
+		product_type b on a.type_id=b.id
+		<where>
+			<if test="name != null and name != ''">
+				and a.name like CONCAT(CONCAT('%',
+				#{name,jdbcType=VARCHAR}),'%')
+			</if>
+			<if test="type != 0">
+				and a.type_id = #{type}
+			</if>
+		</where>
+		limit #{startrownum} , #{pageSize}
+	</select>
+
+	<delete id="del" parameterType="java.lang.Integer">
+		update product set yn = 0 where
+		id = #{id}
+	</delete>
+</mapper>

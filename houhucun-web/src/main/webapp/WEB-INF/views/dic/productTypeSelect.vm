@@ -1,0 +1,15 @@
+<script>
+	$(document).ready(function() {
+		$.post("${ctx}/dicController/all", {}, function(data) {
+			data = eval('(' + data + ')');
+			alert(data);
+			$(".storeroomId").each(function(index, item) {
+				$(item).html(data[$(item).html()])
+			});
+		});
+	})
+</script>
+<div class="formControls col-xs-2">
+	<select name="storeroomId" id="" placeholder="" class="input-text">
+	</select>
+</div>

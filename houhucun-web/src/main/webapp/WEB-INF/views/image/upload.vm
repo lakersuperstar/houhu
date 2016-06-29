@@ -1,0 +1,4 @@
+<form method="post" enctype="multipart/form-data"
+	action="/img/upload.action">
+	<input type="file" name="iocn" value="选取图片"> <input type="submit" value="提交">
+</form>

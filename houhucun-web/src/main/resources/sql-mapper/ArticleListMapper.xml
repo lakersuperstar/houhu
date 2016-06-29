@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.houhucun.mapper.ArticleListMapper">
+	<resultMap id="BaseResultMap" type="com.houhucun.domain.ArticleList">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="product_id" property="productId" jdbcType="INTEGER" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="writer" property="writer" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="yn" property="yn" jdbcType="INTEGER" />
+		<result column="face_img" property="faceImg" jdbcType="VARCHAR" />
+		<result column="summary" property="summary" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="com.houhucun.domain.ArticleList"
+		extends="BaseResultMap">
+		<result column="info" property="info" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, user_id, product_id, title, writer, type, create_time,
+		update_time,
+		yn, face_img,
+		summary
+	</sql>
+	<sql id="Blob_Column_List">
+		info
+	</sql>
+	<insert id="insert" parameterType="com.houhucun.domain.ArticleList">
+		insert into article_list (
+		user_id, product_id,
+		title, writer, type,
+		create_time, yn,
+		face_img,
+		summary,info)
+		values ( #{userId,jdbcType=INTEGER},
+		#{productId,jdbcType=INTEGER},
+		#{title,jdbcType=VARCHAR},
+		#{writer,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER},
+		now(),1,
+		#{faceImg,jdbcType=VARCHAR},
+		#{summary,jdbcType=VARCHAR},
+		#{info,jdbcType=LONGVARCHAR})
+	</insert>
+
+	<update id="updateByPrimaryKey" parameterType="com.houhucun.domain.ArticleList">
+		update
+		article_list
+		set user_id = #{userId,jdbcType=INTEGER},
+		product_id =
+		#{productId,jdbcType=INTEGER},
+		title = #{title,jdbcType=VARCHAR},
+		writer = #{writer,jdbcType=VARCHAR},
+		type = #{type,jdbcType=INTEGER},
+		update_time = now(),
+		face_img
+		= #{faceImg,jdbcType=VARCHAR},
+		summary =
+		#{summary,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<select id="countArticleListByParam" parameterType="com.houhucun.domain.ArticleListQueryVO"
+		resultType="java.lang.Integer">
+		select
+		count(1) as countNum from article_list
+		<where>
+			<if test="title != null and title != ''">
+				title like CONCAT(CONCAT('%',
+				#{title,jdbcType=VARCHAR}),'%')
+			</if>
+			<if test="type != 0">
+				and type = #{type}
+			</if>
+		</where>
+	</select>
+	<select id="selectByParam" resultMap="BaseResultMap"
+		parameterType="com.houhucun.domain.ArticleListQueryVO">
+		select
+		<include refid="Base_Column_List" />
+		from article_list
+		<where>
+			<if test="title != null and title != ''">
+				title like CONCAT(CONCAT('%',
+				#{title,jdbcType=VARCHAR}),'%')
+			</if>
+			<if test="type != 0">
+				and type = #{type}
+			</if>
+		</where>
+		limit #{startrownum} , #{pageSize}
+	</select>
+
+	<select id="selectInfo" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from article_list
+		where id = #{id}
+	</select>
+	<delete id="del" parameterType="java.lang.Integer">
+		update article_list set yn = 0 where id = #{id}
+	</delete>
+
+</mapper>

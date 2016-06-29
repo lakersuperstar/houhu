@@ -1,0 +1,6 @@
+#set($layout="showarticlelayout.vm")
+#set($staticPath1="$request.contextPath/assets")
+#set($ctx="$request.contextPath") $!{article.title}
+<br>
+<br>
+$!{article.info}

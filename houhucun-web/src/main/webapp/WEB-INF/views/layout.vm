@@ -1,0 +1,33 @@
+#set($staticPath="$request.contextPath/assets")
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>后胡村管理</title>
+<link href="$staticPath/css/base.css" rel="stylesheet" type="text/css" />
+<link href="$staticPath/css/common.css" rel="stylesheet">
+<link href="$staticPath/css/H-ui.min.css" rel="stylesheet"
+	type="text/css" />
+<link href="$staticPath/css/module.css" rel="stylesheet" type="text/css" />
+<link href="$staticPath/js/lib/icheck/icheck.css" rel="stylesheet"
+	type="text/css" />
+<script language="javascript" type="text/javascript"
+	src="$staticPath/js/jquery.min.js"></script>
+<script type="text/javascript" src="$staticPath/js/H-ui.js"></script>
+<script type="text/javascript" src="$staticPath/js/header.js"></script>
+</head>
+
+<body class="public_bg">
+
+	#parse("/common/header.vm")
+	<!--主体start-->
+	<div id="user_wrapper" class="clearfix">
+		#parse("/common/menu.vm")
+		<!--右侧start-->
+		$screen_content
+		<!--右侧end-->
+	</div>
+
+
+</body>
+</html>
