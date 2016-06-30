@@ -106,7 +106,7 @@ function update(id){
 	$("#updateForm").find("input[name='mobile']").val(userInfo.mobile);
 	$("#updateForm").find("input[name='address']").val(userInfo.address);
 	$("#updateForm").find("input[name='role']").each(function (){
-	 $(this).val()==userInfo.yn ? $(this).attr("checked","checked"):null;
+	 $(this).val()==userInfo.role ? $(this).attr("checked",true):null;
 	});
 	}
 	}else{

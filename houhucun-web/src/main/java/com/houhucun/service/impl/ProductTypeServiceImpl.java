@@ -37,4 +37,9 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 		return productTypeMapper.selectAll();
 	}
 
+	@Override
+	public boolean del(int id) {
+		return productTypeMapper.deleteByPrimaryKey(id) == 1 ? true : false;
+	}
+
 }

@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.houhucun.controller.vo.Page;
@@ -49,6 +50,12 @@ public class DicController {
 		return types;
 	}
 
+	@RequestMapping("del")
+	@ResponseBody
+	public Object delProductType(@RequestParam(value="id") int id) {
+		return productTypeService.del(id);
+	}
+	
 	@RequestMapping("addProductType")
 	@ResponseBody
 	public Object add(ProductType productType) {

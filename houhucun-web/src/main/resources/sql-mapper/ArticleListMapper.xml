@@ -63,6 +63,14 @@
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 
+	<update id="updateYnById"  parameterType="com.houhucun.domain.ArticleList">
+	update
+		article_list
+		set yn = #{yn},
+		update_time = now()
+		where id=#{id}
+	</update>
+
 	<select id="countArticleListByParam" parameterType="com.houhucun.domain.ArticleListQueryVO"
 		resultType="java.lang.Integer">
 		select

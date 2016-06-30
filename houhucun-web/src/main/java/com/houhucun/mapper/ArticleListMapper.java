@@ -17,5 +17,7 @@ public interface ArticleListMapper {
 
 	int updateByPrimaryKey(ArticleList record);
 
+	int updateYnById(ArticleList record);
+	
 	int del(int id);
 }

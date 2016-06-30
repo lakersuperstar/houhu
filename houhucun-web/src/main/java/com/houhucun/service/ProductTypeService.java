@@ -14,5 +14,7 @@ public interface ProductTypeService {
 	int countUserByParam(ProductTypeQueryVO queryVO);
 	
 	List<ProductType> selectAll();
+	
+	boolean del(int id);
 
 }

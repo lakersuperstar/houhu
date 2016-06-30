@@ -18,4 +18,6 @@ public interface ArticleListService {
 	boolean updateArticleList(ArticleList articleList);
 	
 	boolean delArticleById(int id);
+	
+	boolean updateYnById(ArticleList articleList);
 }

@@ -48,4 +48,9 @@ public class ArticleListServiceImpl implements ArticleListService {
 		return articleListMapper.del(id) == 1 ? true : false;
 	}
 
+	@Override
+	public boolean updateYnById(ArticleList articleList) {
+		return articleListMapper.updateYnById(articleList) == 1 ? true : false;
+	}
+
 }

@@ -7,7 +7,6 @@
 			<dd>
 				<ul>
 					<li><a href="${ctx}/userInfo/list.action">用户列表</a></li>
-					<li><a href="${ctx}/img/show.action">图片上传</a></li>
 				</ul>
 			</dd>
 		</dl>

@@ -15,6 +15,31 @@ function update(id){
 	window.open('$ctx/article/preupdate?cid='+id);
 }
 
+function del(id,state,item){
+	if(confirm("是否确认"+(state==1?"恢复":"删除")+"？")){
+		$(item).removeAttr("onclick");
+		$.post("${ctx}/article/updateYn",{id:id,yn:state},function(data){
+			if(data == "true"){
+				queryBut(1);
+			}else{
+				alert((state==1?"恢复":"删除")+"失败");
+				$(item).attr("onclick","del("+id+",state,this)");
+			}
+		});
+	}
+	
+}
+
+function getIcon(id,state,item){
+	$.post("${ctx}/article/getIcon",{id:id},function(data){
+		if(data == "true"){
+			queryBut(1);
+		}else{
+			alert((state==1?"恢复":"删除")+"失败");
+			$(item).attr("onclick","del("+id+",state,this)");
+		}
+	});
+}
 
 function openedit(){
 	window.open('$ctx/article/edit');
@@ -66,7 +91,9 @@ function openedit(){
 				<td>#if($!{record.yn}==1) <a
 					onclick="update($!record.id,0,this)" class="font_main">修改</a>
 					&nbsp; <a onclick="del($!record.id,0,this)" class="font_main">删除</a>
-					#else <a onclick="del($!record.id,1,this)">恢复</a> #end
+					#else <a onclick="del($!record.id,1,this)" class="font_main">恢复</a>
+					#end &nbsp; <a onclick="getIcon($!record.id,0,this)"
+					class="font_main">二维码</a>
 				</td>
 			</tr>
 			#end

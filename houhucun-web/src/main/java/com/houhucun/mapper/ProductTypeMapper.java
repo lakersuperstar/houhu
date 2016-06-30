@@ -6,7 +6,7 @@ import com.houhucun.domain.ProductType;
 import com.houhucun.domain.ProductTypeQueryVO;
 
 public interface ProductTypeMapper {
-	int deleteByPrimaryKey(Integer id);
+	int deleteByPrimaryKey(int id);
 
 	int insert(ProductType record);
 

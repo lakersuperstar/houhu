@@ -44,6 +44,19 @@ function queryBut(page){
 	$("#queryForm").submit();
 
 }
+
+function delbut(id){
+	if(confirm("是否确认删除")){
+		$.post("${ctx}/dicController/del",{id:id},function(data){
+			if(data == "true"){
+				queryBut(1);
+			}else{
+				alert("删除失败!");
+				
+			}
+		});
+	}
+}
 </script>
 <div id="user_right">
 	<h4 class="add_tender_title font_main">产品类型</h4>
@@ -82,8 +95,8 @@ function queryBut(page){
 			<tr class="text-c">
 				<td>$!{record.name}</td>
 				<td>#if($!{record.yn}==0) 无效 #else 有效 #end</td>
-				<td>#if($!{record.yn}==1) <a onclick="del($!record.id,0,this)">删除</a>
-					#else <a onclick="del($!record.id,1,this)">恢复</a> #end
+				<td>#if($!{record.yn}==1) <a onclick="delbut($!record.id)" class="font_main">删除</a>
+					 #end
 				</td>
 			</tr>
 			#end
