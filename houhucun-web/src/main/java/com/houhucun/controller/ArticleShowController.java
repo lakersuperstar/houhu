@@ -47,7 +47,7 @@ public class ArticleShowController {
 	public String showArticle(ModelMap map, @PathVariable(value = "cid") int cid) {
 		ArticleList al = articleListService.findArticleList(cid);
 		map.put("article", al);
-		return "/show/article1";
+		return "/show/article";
 	}
 
 }

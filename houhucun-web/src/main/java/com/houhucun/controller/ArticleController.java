@@ -6,7 +6,6 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,8 +34,7 @@ public class ArticleController {
 		queryVO.setPageSize(page.getSize());
 		queryVO.setNowPage();
 		page.setTotalRecord(counts);
-		List<ArticleList> productTypes = articleListService
-				.getArticleList(queryVO);
+		List<ArticleList> productTypes = articleListService.getArticleList(queryVO);
 		map.put("articles", productTypes);
 		map.put("pageBut", page.sizeToString(queryVO.getFunctionName()));
 		map.put("articleListQueryVO", queryVO);
@@ -58,4 +56,22 @@ public class ArticleController {
 	public String editArticle(ModelMap map) {
 		return "/article/edit";
 	}
+
+	@RequestMapping("preupdate")
+	public String preupdate(ModelMap map, @RequestParam(value = "cid") int cid) {
+		ArticleList al = articleListService.findArticleList(cid);
+		map.put("al", al);
+		return "/article/edit";
+	}
+	
+	@RequestMapping("update")
+	@ResponseBody
+	public Object update(ArticleList article) {
+		boolean flag = articleListService.updateArticleList(article);
+		if(flag){
+			return true;
+		}
+		return false;
+	}
+
 }

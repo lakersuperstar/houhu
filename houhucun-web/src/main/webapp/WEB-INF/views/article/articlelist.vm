@@ -5,46 +5,19 @@
 <script
 	src="$staticPath/js/lib/bootstrap-modal/2.2.4/bootstrap-modal.js"></script>
 <script>
-function subBtn(){
-	var vali = true;
-	$(".require").each(function(){
-		if($(this).val()==""){
-			vali=false;
-			$(this).css("border","1px solid red");
-		}else{
-			$(this).css("border","1px solid #ddd");
-		}
-	});
-	$(".number").each(function(){
-		if(!/^\d*$/.test($(this).val())){
-			vali=false;
-			$(this).css("border","1px solid red");
-		}else{
-			$(this).css("border","1px solid #ddd");
-		}
-	});
-	if(vali){
-		$("#subBtn").removeAttr("onclick");
-		var data = $("#addForm").serialize();
-		$.post("$ctx/dicController/addProductType.action",data,function(data){
-			if(data=='true'){
-				queryBut(1);
-			}else{
-				alert("添加失败,请检查输入的名称是否已经重复!");
-			}
-			$("#subBtn").attr("onclick","subBtn()")
-		});
-	}
-}
-
 function queryBut(page){
 	$("input[name='pageNo']").val(page);
 	$("input[name='functionName']").val("queryBut");
 	$("#queryForm").submit();
 }
 
+function update(id){
+	window.open('$ctx/article/preupdate?cid='+id);
+}
+
+
 function openedit(){
-	window.open('http://localhost:8084/article/edit');
+	window.open('$ctx/article/edit');
 }
 </script>
 <div id="user_right">
@@ -90,7 +63,9 @@ function openedit(){
 				<td>$!{record.writer}</td>
 				<td>$!date.format('yyyy-MM-dd HH:mm:ss',$!record.createTime)</td>
 				<td>#if($!{record.yn}==0) 无效 #else 有效 #end</td>
-				<td>#if($!{record.yn}==1) <a onclick="del($!record.id,0,this)">删除</a>
+				<td>#if($!{record.yn}==1) <a
+					onclick="update($!record.id,0,this)" class="font_main">修改</a>
+					&nbsp; <a onclick="del($!record.id,0,this)" class="font_main">删除</a>
 					#else <a onclick="del($!record.id,1,this)">恢复</a> #end
 				</td>
 			</tr>

@@ -14,25 +14,53 @@
 <link href="$staticPath1/css/edit.css" rel="stylesheet" type="text/css" />
 <link href="$staticPath1/css/editv2.css" rel="stylesheet"
 	type="text/css" />
-</head>
 
+<script type="text/javascript">
+	function submit() {
+		var data = editor.getContent();
+		$("#infoId").val(data);
+		var id = $("#articleId").val();
+		if (id == null || id == '') {
+			$("#articleId").val('-1');
+			var data = $("#addInfo").serialize();
+			$.post("${ctx}/article/add", data, function(data) {
+				if (data == 'true') {
+					alert("保存成功!");
+				} else {
+					alert("保存失败!");
+				}
+			});
+		}else{
+			var data = $("#addInfo").serialize();
+			$.post("${ctx}/article/update", data, function(data) {
+				if (data == 'true') {
+					alert("保存成功!");
+				} else {
+					alert("保存失败!");
+				}
+			});
+		}
+		
+	}
+</script>
+</head>
 <body class="admin">
 	<ul>
 		<li style="float: left">
-
-
 			<div class="page-container">
 				<div id="editor">
 					<div class="wxb-index-wrap mode-normal container">
 						<div class="editor-form">
-							<form action="${ctx}/article/add" id="addInfo" method="post">
+							<form action="" id="addInfo" method="post">
 								<div class="form-wrap">
 									<div id="editorFloat" class="editor-float only-normal">
-										<input class="editor-input editor-title"
-											placeholder="请在这里输入标题" name="title" type="text" id="titleId">
+										<input type="hidden" name="id" id="articleId"
+											value="$!{al.id}"> <input
+											class="editor-input editor-title" placeholder="请在这里输入标题"
+											name="title" value="$!{al.title}" type="text" id="titleId">
 										<input class="editor-input editor-author" placeholder="请输入作者"
-											name="writer" id="writerId" type="text"> <input
-											type="hidden" name="info" id="infoId" />
+											name="writer" id="writerId" value="$!{al.writer}" type="text">
+										<input type="hidden" name="info" id="infoId" />
 									</div>
 
 									<div class="editor-content-area">
@@ -49,21 +77,19 @@
 						</div>
 					</div>
 				</div>
-
 			</div>
-
 		</li>
 		<li style="float: left">
 			<div
 				style="width: 739px; text-align: center; margin-left: auto; margin-right: auto; margin-top: 0; margin-bottom: 0">
-				<br> <a href='#' id="ok" class='classNameBut'>保存文章</a>
+				<br> <a href='#' id="ok" class='classNameBut'
+					onclick="submit()"> 保存文章</a>
 			</div>
 
 		</li>
 	</ul>
 	<script type="text/javascript">
 		var editorId = "appmsg_editor";
-		// 		var URL = window.UEDITOR_HOME_URL || getUEBasePath();
 		var editor = UE.getEditor("js_editor", {
 			id : editorId,
 			imageUrl : "php/imageUp.php", //图片上传提交地址
@@ -117,40 +143,12 @@
 		editor.addListener("catchremoteerror", function() {
 			tips.error("远程图片抓取失败");
 		});
-		// 		editor
-		// 				.ready(function() {
-		// 					var toolbars = editor.ui.toolbars;
-		// 					$('#' + editor.ui.toolbars[0].id).addClass(
-		// 							"edui-toolbar-primary");
-		// 					$('#' + editor.ui.toolbars[1].id).addClass(
-		// 							"edui-toobar-secondary");
-		// 					$("#" + editorId + "_toolbarbox")
-		// 							.addClass("show-edui-more");
-		// 					for (var i = 0; i < toolbars.length; i++) {
-		// 						var toolbar = toolbars[i];
-		// 						var items = toolbar.items;
-		// 						for (var j = 0; j < items.length; j++) {
-		// 							if (items[j] instanceof UE.ui.Combox
-		// 									|| items[j] instanceof UE.ui.SplitButton) {
-		// 								$("#" + items[j].id + "_state").tooltip({
-		// 									container : 'body'
-		// 								});
-		// 							} else if (items[j] instanceof UE.ui.Button
-		// 									|| items[j] instanceof UE.ui.MenuButton) {
-		// 								$("#" + items[j].id + "_body").tooltip({
-		// 									container : 'body'
-		// 								});
-		// 							}
-		// 						}
-		// 					}
-		// 				});
+		editor.addListener("ready", function() {
+			if ('$!{al.id}' != null && '$!{al.id}' != '') {
+				editor.setContent('$!{al.info}');
+			}
 
-		$("#ok").click(function() {
-			var data = editor.getContent();
-			$("#infoId").val(data);
-			$("#addInfo").submit();
 		});
 	</script>
 </body>
-
 </html>

@@ -47,7 +47,7 @@
 	<update id="updateByPrimaryKey" parameterType="com.houhucun.domain.ArticleList">
 		update
 		article_list
-		set user_id = #{userId,jdbcType=INTEGER},
+		set
 		product_id =
 		#{productId,jdbcType=INTEGER},
 		title = #{title,jdbcType=VARCHAR},
@@ -57,7 +57,9 @@
 		face_img
 		= #{faceImg,jdbcType=VARCHAR},
 		summary =
-		#{summary,jdbcType=VARCHAR}
+		#{summary,jdbcType=VARCHAR},
+		info=
+		#{info,jdbcType=LONGVARCHAR}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 
@@ -102,7 +104,8 @@
 		where id = #{id}
 	</select>
 	<delete id="del" parameterType="java.lang.Integer">
-		update article_list set yn = 0 where id = #{id}
+		update article_list set yn = 0
+		where id = #{id}
 	</delete>
 
 </mapper>
