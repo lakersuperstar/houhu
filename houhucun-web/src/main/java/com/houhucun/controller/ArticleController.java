@@ -22,6 +22,7 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.houhucun.controller.vo.Page;
 import com.houhucun.domain.ArticleList;
 import com.houhucun.domain.ArticleListQueryVO;
@@ -112,8 +113,10 @@ public class ArticleController {
 			MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
 			Map hints = new HashMap();
 			hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
+			// 设置二维码的纠错级别为h
+			hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
 			BitMatrix bitMatrix = multiFormatWriter.encode(url, BarcodeFormat.QR_CODE, 400, 400, hints);
-			ZxingUtils.writeToStream(bitMatrix, "jpg", os);
+			ZxingUtils.writeToStream(ZxingUtils.updateBit(bitMatrix, 0), "jpg", os);
 			os.flush();
 		} catch (Exception e) {
 			LOGGER.error("返回二维码图片流异常，e:", e);
@@ -127,7 +130,6 @@ public class ArticleController {
 			}
 
 		}
-		// return "/article/twocodeimage";
 	}
 
 }
