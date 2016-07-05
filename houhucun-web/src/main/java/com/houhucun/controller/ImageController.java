@@ -61,4 +61,31 @@ public class ImageController {
 		}
 		return imageResult;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/uploadFirst", method = RequestMethod.POST)
+	public Object uploadFirst(@RequestParam("addFirstNameForm") MultipartFile iocn,
+			HttpServletRequest request, Model model, ModelMap modelMap) {
+		ImageUpload imageResult = new ImageUpload();
+		try {
+			InputStream is = iocn.getInputStream();
+			String originalName = iocn.getOriginalFilename();
+			int indexExt = originalName.lastIndexOf(".");
+			String extName = originalName.substring(indexExt);
+			String uuidname = UUID.randomUUID().toString();
+			String fileName = System.currentTimeMillis() + "" + uuidname
+					+ extName;
+			FileUtils.saveFileFromInputStream(is, imgSavePath, fileName);
+			imageResult.setOriginal(fileName);
+			imageResult.setState("SUCCESS");
+			imageResult.setTitle(fileName);
+			imageResult.setUrl( "assets/uploadimg/" + fileName);
+		} catch (IOException e) {
+			LOGGER.error("上传图片异常", e);
+			imageResult.setState("ERROR");
+			return false;
+		}
+		return true;
+	}
+
 }
