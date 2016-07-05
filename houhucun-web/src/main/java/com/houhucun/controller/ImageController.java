@@ -28,8 +28,7 @@ public class ImageController {
 	@Value("#{configProperties['imgSavePath']}")
 	private String imgSavePath;
 
-	private static Logger LOGGER = LoggerFactory
-			.getLogger(ImageController.class);
+	private static Logger LOGGER = LoggerFactory.getLogger(ImageController.class);
 
 	@RequestMapping("/show")
 	public String index() {
@@ -38,8 +37,8 @@ public class ImageController {
 
 	@ResponseBody
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
-	public Object upload(@RequestParam("iocn") MultipartFile iocn,
-			HttpServletRequest request, Model model, ModelMap modelMap) {
+	public Object upload(@RequestParam("iocn") MultipartFile iocn, HttpServletRequest request, Model model,
+			ModelMap modelMap) {
 		ImageUpload imageResult = new ImageUpload();
 		try {
 			InputStream is = iocn.getInputStream();
@@ -47,13 +46,12 @@ public class ImageController {
 			int indexExt = originalName.lastIndexOf(".");
 			String extName = originalName.substring(indexExt);
 			String uuidname = UUID.randomUUID().toString();
-			String fileName = System.currentTimeMillis() + "" + uuidname
-					+ extName;
+			String fileName = System.currentTimeMillis() + "" + uuidname + extName;
 			FileUtils.saveFileFromInputStream(is, imgSavePath, fileName);
 			imageResult.setOriginal(fileName);
 			imageResult.setState("SUCCESS");
 			imageResult.setTitle(fileName);
-			imageResult.setUrl( "assets/uploadimg/" + fileName);
+			imageResult.setUrl("assets/uploadimg/" + fileName);
 		} catch (IOException e) {
 			LOGGER.error("上传图片异常", e);
 			imageResult.setState("ERROR");
@@ -61,11 +59,11 @@ public class ImageController {
 		}
 		return imageResult;
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/uploadFirst", method = RequestMethod.POST)
-	public Object uploadFirst(@RequestParam("addFirstNameForm") MultipartFile iocn,
-			HttpServletRequest request, Model model, ModelMap modelMap) {
+	public Object uploadFirst(@RequestParam("cover") MultipartFile iocn, HttpServletRequest request, Model model,
+			ModelMap modelMap) {
 		ImageUpload imageResult = new ImageUpload();
 		try {
 			InputStream is = iocn.getInputStream();
@@ -73,13 +71,12 @@ public class ImageController {
 			int indexExt = originalName.lastIndexOf(".");
 			String extName = originalName.substring(indexExt);
 			String uuidname = UUID.randomUUID().toString();
-			String fileName = System.currentTimeMillis() + "" + uuidname
-					+ extName;
+			String fileName = System.currentTimeMillis() + "" + uuidname + extName;
 			FileUtils.saveFileFromInputStream(is, imgSavePath, fileName);
 			imageResult.setOriginal(fileName);
 			imageResult.setState("SUCCESS");
 			imageResult.setTitle(fileName);
-			imageResult.setUrl( "assets/uploadimg/" + fileName);
+			imageResult.setUrl("assets/uploadimg/" + fileName);
 		} catch (IOException e) {
 			LOGGER.error("上传图片异常", e);
 			imageResult.setState("ERROR");

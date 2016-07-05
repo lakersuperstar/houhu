@@ -8,6 +8,7 @@
 <meta charset="utf-8">
 <title>文章编辑器</title>
 <script type="text/javascript" src="$staticPath1/js/jquery-1.10.2.js"></script>
+<script src="http://malsup.github.io/jquery.form.js"></script>
 <script type="text/javascript"
 	src="$staticPath1/ueditor/ueditor.config.js"></script>
 <script type="text/javascript" src="$staticPath1/ueditor/ueditor.all.js"></script>
@@ -60,7 +61,8 @@
 											name="title" value="$!{al.title}" type="text" id="titleId">
 										<input class="editor-input editor-author" placeholder="请输入作者"
 											name="writer" id="writerId" value="$!{al.writer}" type="text">
-										<input type="hidden" name="info" id="infoId" />
+										<input type="hidden" name="info" id="infoId" /> <input
+											type="hidden" name="faceImg" id="faceImgId" />
 									</div>
 
 									<div class="editor-content-area">
@@ -102,8 +104,7 @@
 			</div>
 			<div hidden="true">
 				<form method="post" enctype="multipart/form-data"
-					id="addFirstNameForm" action="">
-					<input type="file" name="firstName" id="firstId" value="选取图片">
+					id="addFirstNameForm" action="$ctx/img/uploadFirst">
 					<input type="button" value="提交" id="firstNameBut">
 				</form>
 
@@ -178,18 +179,28 @@
 				"input[type='file']",
 				function() {
 					var filePath = $(this).val();
-					alert(filePath);
+
 					if (filePath.indexOf("jpg") != -1
 							|| filePath.indexOf("png") != -1) {
-						var content = "<input type='file' name='file' value='"+filePath+"'>";
-						$("#addFirstNameForm").append(content); 
-						var data = $("#addFirstNameForm").serialize();
-						alert(data);
-						$.post("$ctx/img/uploadFirst", data, function(data) {
-							if (data == 'true') {
-							} else {
-								alert("添加失败");
-							}
+
+						$("#addFirstNameForm").append($("#cover_file"));
+						var url = "$ctx/img/uploadFirst";
+						//提交请求处理的url  
+						var actionUrl = "ImageUpload.ashx";
+						//开始ajax操作  
+						$("#addFirstNameForm").ajaxSubmit({
+							type : "POST",//提交类型  
+							dataType : "json",//返回结果格式  
+							url : url,//请求地址  
+							data : {},//请求数据  
+							success : function(data) {//请求成功后的函数  
+								alert(data);
+								$("#faceImgId").val("/asdf");
+							},
+							error : function(data) {
+								alert(data);
+							},//请求失败的函数  
+							async : true
 						});
 					} else {
 						alert("图片格式不对!");

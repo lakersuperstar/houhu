@@ -104,7 +104,7 @@ public class ArticleController {
 	public void getImage(HttpServletResponse response, HttpServletRequest request,
 			@RequestParam(value = "cid") int cid) {
 		OutputStream os = null;
-		try {
+		try { 
 			os = response.getOutputStream();
 			response.setContentType("image/png");
 			int endIndex = request.getRequestURL().length() - request.getRequestURI().length() + 1;
