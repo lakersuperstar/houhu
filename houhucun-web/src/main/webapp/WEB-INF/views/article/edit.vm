@@ -21,13 +21,14 @@
 		var data = editor.getContent();
 		$("#infoId").val(data);
 		var id = $("#articleId").val();
-		if (id == null || id == '') {
+		if (id == null || id == '' || id=='-1') {
 			$("#articleId").val('-1');
 			var data = $("#addInfo").serialize();
 			$.post("${ctx}/article/add", data, function(data) {
 				if (data == 'true') {
 					alert("保存成功!");
 				} else {
+					$("#articleId").val('');
 					alert("保存失败!");
 				}
 			});
@@ -69,7 +70,7 @@
 										<div class="form-content-wrap">
 											<div class="content-wrap edui-default">
 												<div id="js_editor" class="edui-editor  edui-default"
-													style="width: 736px; z-index: 999;"></div>
+													style="width: 734px; z-index: 999;"></div>
 											</div>
 										</div>
 									</div>
@@ -86,7 +87,12 @@
 												accept="image/x-png, image/gif, image/jpeg" name="cover"><label
 												for="cover_file" class="fileinput-file"> </label></span>
 										</div>
-										<span</span>
+										<span></span>
+										<div class="upload-preview-wrap clearfix" id="faceImgDiv"
+											hidden="true">
+											<img class="upload-preview-img" onfocus=this.blur() id="faceImgShowId" /><a
+												href="javascript:delFaceImgId();">删除</a>
+										</div>
 									</div>
 								</div>
 							</form>
@@ -117,22 +123,23 @@
 		var editor = UE.getEditor("js_editor", {
 			id : editorId,
 			imageUrl : "php/imageUp.php", //图片上传提交地址
-			imagePath : "", //图片修正地址，引用了fixedImagePath,如有特殊需求，可自行配,
+			imagePath : "www.", //图片修正地址，引用了fixedImagePath,如有特殊需求，可自行配,
 			imageFieldName : "upfile",
 			/* 上传图片配置项 */
 			imageActionName : "uploadimage", /* 执行上传图片的action名称 */
 			imageFieldName : "iocn", /* 提交的图片表单名称 */
-			imageUrlPrefix : "/",
+			imageUrlPrefix : "",
 			imageMaxSize : 2048000, /* 上传大小限制，单位B */
 			imageAllowFiles : [ ".png", ".jpg", ".jpeg", ".gif", ".bmp" ], /* 上传图片格式显示 */
 			imageCompressEnable : true, /* 是否压缩图片,默认是true */
 			imageCompressBorder : 1600, /* 图片压缩最长边限制 */
 			// 初始化编辑器宽度
-			initialFrameWidth : "auto",
+			initialFrameWidth : 780,
 			// 初始化编辑器高度
 			initialFrameHeight : 330,
 			// 启用自动保存
 			enableAutoSave : false,
+			autoFloatEnabled:true,
 			// 微信主题
 			theme : 'wx',
 			themePath : "../assets/ueditor/themes/",
@@ -154,9 +161,9 @@
 		UE.Editor.prototype.getActionUrl = function(action) {
 			if (action == 'uploadimage' || action == 'uploadscrawl'
 					|| action == 'uploadimage') {
-				return 'http://10.6.60.72:8084/img/upload';
+				return '${ctx}/img/upload';
 			} else if (action == 'uploadvideo') {
-				return 'http://a.b.com/video.php';
+				return '';
 			} else {
 				return this._bkGetActionUrl.call(this, action);
 			}
@@ -194,8 +201,14 @@
 							url : url,//请求地址  
 							data : {},//请求数据  
 							success : function(data) {//请求成功后的函数  
-								alert(data);
-								$("#faceImgId").val("/asdf");
+								var data2 = eval(data);
+								if (data2 != null && data2.state == 'SUCCESS') {
+									$("#faceImgDiv").show();
+									$("#faceImgShowId").attr("src", data2.url);
+									$("#faceImgId").val(data2.url);
+								}else{
+									alert("上传失败!");
+								}
 							},
 							error : function(data) {
 								alert(data);
@@ -206,6 +219,10 @@
 						alert("图片格式不对!");
 					}
 				});
+		
+		function delFaceImgId(){
+			$("#faceImgId").val("");
+		}
 	</script>
 </body>
 </html>

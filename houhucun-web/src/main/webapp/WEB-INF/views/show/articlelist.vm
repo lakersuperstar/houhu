@@ -12,7 +12,7 @@
 			class="grid-posts__item track   first  has-like-button">
 			<div class="lede ">
 				<a class="lede__link"> <img
-					src="http://photocdn.sohu.com/20150822/Img419491467.jpg" />
+					src="$!{record.faceImg}" />
 				</a>
 				<div class="lede__body">
 					<h2 class="lede__title lede__title--medium">
@@ -27,12 +27,12 @@
 							<time class="small-meta__item__time-ago">$!date.format('yyyy-MM-dd
 								HH:mm:ss',$!record.createTime)</time>
 						</div>
-						<div class="small-meta__item small-meta__item--comment">
-							<a
-								href="/jessicamisener/if-slogans-for-chain-restaurants-were-honest#respond">
-								<span class="num">212</span>responses
-							</a>
-						</div>
+<!-- 						<div class="small-meta__item small-meta__item--comment"> -->
+<!-- 							<a -->
+<!-- 								href="/jessicamisener/if-slogans-for-chain-restaurants-were-honest#respond"> -->
+<!-- 								<span class="num">212</span>responses -->
+<!-- 							</a> -->
+<!-- 						</div> -->
 					</div>
 				</div>
 			</div>
