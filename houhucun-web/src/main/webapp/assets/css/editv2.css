@@ -597,6 +597,10 @@ body {
 	background: url(../../img/editor_v2/triangle-up.png) 1px 3px no-repeat
 }
 
+.fixed-width .edui-editor-toolbarbox{
+	width:780px;
+}
+
 .hide-content .edui-default .edui-editor-toolbarbox:after {
 	position: absolute;
 	content: " ";

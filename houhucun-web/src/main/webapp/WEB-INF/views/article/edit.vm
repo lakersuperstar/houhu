@@ -15,6 +15,9 @@
 <link href="$staticPath1/css/edit.css" rel="stylesheet" type="text/css" />
 <link href="$staticPath1/css/editv2.css" rel="stylesheet"
 	type="text/css" />
+	<link href="http://www.wxb.com/pc/css/editor/editor_v2.min.css?v=1.2.1" rel="stylesheet"
+	type="text/css" />
+	
 
 <script type="text/javascript">
 	function submit() {
@@ -48,7 +51,7 @@
 </head>
 <body class="admin">
 	<ul>
-		<li style="float: left">
+		<li style="float: left;width: 780px" >
 			<div class="page-container">
 				<div id="editor">
 					<div class="wxb-index-wrap mode-normal container">
@@ -119,7 +122,12 @@
 		</li>
 	</ul>
 	<script type="text/javascript">
+	
+	
+  
+
 		var editorId = "appmsg_editor";
+
 		var editor = UE.getEditor("js_editor", {
 			id : editorId,
 			imageUrl : "php/imageUp.php", //图片上传提交地址
@@ -139,7 +147,7 @@
 			initialFrameHeight : 330,
 			// 启用自动保存
 			enableAutoSave : false,
-			autoFloatEnabled:true,
+			autoFloatEnabled : true,
 			// 微信主题
 			theme : 'wx',
 			themePath : "../assets/ueditor/themes/",
@@ -180,6 +188,19 @@
 			}
 
 		});
+		
+		$(function() {
+			var target = $('#editor');
+			var targetOffsetTop = target.offset().top;
+			$(window).scroll(function() {
+				var nowScTop = $(window).scrollTop()
+				if (nowScTop > targetOffsetTop) {
+					$("#appmsg_editor_toolbarbox").css({'width':'780px'});
+				} else {
+					target.removeClass('fixed-width')
+				}
+			})
+		});
 
 		$(".fileinput-button").on(
 				"change",
@@ -206,7 +227,7 @@
 									$("#faceImgDiv").show();
 									$("#faceImgShowId").attr("src", data2.url);
 									$("#faceImgId").val(data2.url);
-								}else{
+								} else {
 									alert("上传失败!");
 								}
 							},
@@ -219,8 +240,8 @@
 						alert("图片格式不对!");
 					}
 				});
-		
-		function delFaceImgId(){
+
+		function delFaceImgId() {
 			$("#faceImgId").val("");
 		}
 	</script>
