@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.houhucun.controller.vo.Page;
 import com.houhucun.domain.Product;
 import com.houhucun.domain.ProductQueryVO;
+import com.houhucun.domain.UserInfo;
 import com.houhucun.service.ProductService;
 
 @Controller
@@ -33,8 +34,7 @@ public class ProductController {
 		queryVO.setPageSize(page.getSize());
 		queryVO.setNowPage();
 		page.setTotalRecord(counts);
-		List<Product> products = productService
-				.selectByParam(queryVO);
+		List<Product> products = productService.selectByParam(queryVO);
 		map.put("products", products);
 		map.put("pageBut", page.sizeToString(queryVO.getFunctionName()));
 		map.put("productQueryVO", queryVO);
@@ -45,6 +45,19 @@ public class ProductController {
 	@ResponseBody
 	public Object add(Product product) {
 		return productService.addProduct(product);
+	}
+
+	@RequestMapping("del")
+	@ResponseBody
+	public Object del(Product product) {
+		Product productNew = new Product();
+		productNew.setId(product.getId());
+		productNew.setYn(product.getYn());
+		if (productService.delProduct(productNew)) {
+			return "ok";
+		}
+		return "error";
+
 	}
 
 }

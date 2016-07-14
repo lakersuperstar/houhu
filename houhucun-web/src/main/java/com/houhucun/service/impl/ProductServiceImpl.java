@@ -32,4 +32,9 @@ public class ProductServiceImpl implements ProductService {
 		return productMapper.countProductByParam(queryVO);
 	}
 
+	@Override
+	public boolean delProduct(Product product) {
+		return productMapper.upProductYn(product) == 1 ? true : false;
+	}
+
 }

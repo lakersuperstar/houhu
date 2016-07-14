@@ -18,4 +18,5 @@ public interface ProductMapper {
 
 	int countProductByParam(ProductQueryVO queryVO);
 
+	int upProductYn(Product record);
 }

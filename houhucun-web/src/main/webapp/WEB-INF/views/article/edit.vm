@@ -17,12 +17,30 @@
 	type="text/css" />
 <link href="http://www.wxb.com/pc/css/editor/editor_v2.min.css?v=1.2.1"
 	rel="stylesheet" type="text/css" />
-
-
 <script type="text/javascript">
 	function submit() {
 		var data = editor.getContent();
 		$("#infoId").val(data);
+		
+		var title = $("#titleId").val();
+		var writerId = $("#writerId").val();
+		var faceImgId = $("#faceImgId").val();
+		
+		if(title == ''){
+			alert("标题不能为空!");
+			return false;
+		}
+		
+		if(writerId == ''){
+			alert("作者不能为空!");
+			return false;
+		}
+		
+		if(faceImgId == ''){
+			alert("封面照片不能为空!");
+			return false;
+		}
+		
 		var id = $("#articleId").val();
 		if (id == null || id == '' || id == '-1') {
 			$("#articleId").val('-1');
@@ -47,6 +65,14 @@
 		}
 
 	}
+	
+	$(function(){
+		var al = "${al.faceImg}";
+		if(al.startsWith("http")){
+			$("#faceImgDiv").show();
+			$("#faceImgShowId").attr("src", al);
+		}
+	});
 </script>
 </head>
 <body class="admin">
@@ -66,7 +92,7 @@
 										<input class="editor-input editor-author" placeholder="请输入作者"
 											name="writer" id="writerId" value="$!{al.writer}" type="text">
 										<input type="hidden" name="info" id="infoId" /> <input
-											type="hidden" name="faceImg" id="faceImgId" />
+											type="hidden" name="faceImg" id="faceImgId" value="$!{al.faceImg}"/>
 									</div>
 
 									<div class="editor-content-area">
@@ -185,19 +211,6 @@
 
 		});
 
-		/* $(function() {
-			var target = $('#editor');
-			var targetOffsetTop = target.offset().top;
-			$(window).scroll(function() {
-				var nowScTop = $(window).scrollTop()
-				if (nowScTop > targetOffsetTop) {
-					$("#appmsg_editor_toolbarbox").css({'width':'780px'});
-				} else {
-					target.removeClass('fixed-width')
-				}
-			})
-		}); */
-
 		$(".fileinput-button").on(
 				"change",
 				"input[type='file']",
@@ -239,6 +252,8 @@
 
 		function delFaceImgId() {
 			$("#faceImgId").val("");
+			$("#faceImgShowId").attr("src", "");
+			$("#faceImgDiv").hide();
 		}
 	</script>
 </body>

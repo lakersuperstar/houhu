@@ -13,4 +13,6 @@ public interface ProductService {
 
 	int countProductByParam(ProductQueryVO queryVO);
 
+	boolean delProduct(Product product);
+
 }

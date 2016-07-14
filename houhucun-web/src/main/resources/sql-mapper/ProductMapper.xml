@@ -198,4 +198,10 @@
 		update product set yn = 0 where
 		id = #{id}
 	</delete>
+
+	<update id="upProductYn" parameterType="com.houhucun.domain.Product">
+		update product set yn =
+		#{yn} where
+		id = #{id}
+	</update>
 </mapper>

@@ -17,7 +17,7 @@ function subBtn(){
 		}
 	});
 	$("#addForm").find(".number").each(function(){
-		if(!/^\d*$/.test($(this).val())){
+		if($(this).val()=="" || !/^\d*$/.test($(this).val())){
 			vali=false;
 			$(this).css("border","1px solid red");
 		}else{
@@ -40,14 +40,6 @@ function subBtn(){
 
 function updateBtn(){
 	var vali = true;
-	$("#updateForm").find(".require").each(function(){
-		if($(this).val()==""){
-			vali=false;
-			$(this).css("border","1px solid red");
-		}else{
-			$(this).css("border","1px solid #ddd");
-		}
-	});
 	$("#updateForm").find(".number").each(function(){
 		if(!/^\d*$/.test($(this).val())){
 			vali=false;
@@ -56,6 +48,16 @@ function updateBtn(){
 			$(this).css("border","1px solid #ddd");
 		}
 	});
+	
+	$("#updateForm").find(".require").each(function(){
+		if($(this).val()=="" || $(this).val() == 0){
+			vali=false;
+			$(this).css("border","1px solid red");
+		}else{
+			$(this).css("border","1px solid #ddd");
+		}
+	});
+	
 	if(vali){
 		$("#updateBtn").removeAttr("onclick");
 		var data = $("#updateForm").serialize();
