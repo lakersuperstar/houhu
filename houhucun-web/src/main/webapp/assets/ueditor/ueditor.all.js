@@ -17531,7 +17531,7 @@ UE.plugins['autofloat'] = function() {
         var toobarBoxPos = domUtils.getXY(toolbarBox),
             origalFloat = domUtils.getComputedStyle(toolbarBox,'position'),
             origalLeft = domUtils.getComputedStyle(toolbarBox,'left');
-        toolbarBox.style.width = toolbarBox.offsetWidth + 'px';
+        toolbarBox.style.width = $(toolbarBox.parentElement).width()-40+'px'
         toolbarBox.style.zIndex = me.options.zIndex * 1 + 1;
         toolbarBox.parentNode.insertBefore(placeHolder, toolbarBox);
         if (LteIE6 || (quirks && browser.ie)) {

@@ -15,16 +15,16 @@
 <link href="$staticPath1/css/edit.css" rel="stylesheet" type="text/css" />
 <link href="$staticPath1/css/editv2.css" rel="stylesheet"
 	type="text/css" />
-	<link href="http://www.wxb.com/pc/css/editor/editor_v2.min.css?v=1.2.1" rel="stylesheet"
-	type="text/css" />
-	
+<link href="http://www.wxb.com/pc/css/editor/editor_v2.min.css?v=1.2.1"
+	rel="stylesheet" type="text/css" />
+
 
 <script type="text/javascript">
 	function submit() {
 		var data = editor.getContent();
 		$("#infoId").val(data);
 		var id = $("#articleId").val();
-		if (id == null || id == '' || id=='-1') {
+		if (id == null || id == '' || id == '-1') {
 			$("#articleId").val('-1');
 			var data = $("#addInfo").serialize();
 			$.post("${ctx}/article/add", data, function(data) {
@@ -51,7 +51,7 @@
 </head>
 <body class="admin">
 	<ul>
-		<li style="float: left;width: 780px" >
+		<li style="float: left; width: 780px">
 			<div class="page-container">
 				<div id="editor">
 					<div class="wxb-index-wrap mode-normal container">
@@ -93,8 +93,8 @@
 										<span></span>
 										<div class="upload-preview-wrap clearfix" id="faceImgDiv"
 											hidden="true">
-											<img class="upload-preview-img" onfocus=this.blur() id="faceImgShowId" /><a
-												href="javascript:delFaceImgId();">删除</a>
+											<img class="upload-preview-img" onfocus=this.blur()
+												id="faceImgShowId" /><a href="javascript:delFaceImgId();">删除</a>
 										</div>
 									</div>
 								</div>
@@ -122,10 +122,6 @@
 		</li>
 	</ul>
 	<script type="text/javascript">
-	
-	
-  
-
 		var editorId = "appmsg_editor";
 
 		var editor = UE.getEditor("js_editor", {
@@ -188,8 +184,8 @@
 			}
 
 		});
-		
-		$(function() {
+
+		/* $(function() {
 			var target = $('#editor');
 			var targetOffsetTop = target.offset().top;
 			$(window).scroll(function() {
@@ -200,7 +196,7 @@
 					target.removeClass('fixed-width')
 				}
 			})
-		});
+		}); */
 
 		$(".fileinput-button").on(
 				"change",
