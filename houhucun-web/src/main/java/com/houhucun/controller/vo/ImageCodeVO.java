@@ -32,7 +32,10 @@ public class ImageCodeVO implements Serializable{
 	/**
 	 * 二维码地址
 	 */
-	private String ec;
+	private String qr;
+	
+	private int cid;
+	
 
 	public String getTitle() {
 		return title;
@@ -66,12 +69,21 @@ public class ImageCodeVO implements Serializable{
 		this.inlineRadioOptions = inlineRadioOptions;
 	}
 
-	public String getEc() {
-		return ec;
+	public String getQr() {
+		return qr;
 	}
 
-	public void setEc(String ec) {
-		this.ec = ec;
+	public void setQr(String qr) {
+		this.qr = qr;
 	}
 
+	public int getCid() {
+		return cid;
+	}
+
+	public void setCid(int cid) {
+		this.cid = cid;
+	}
+
+	
 }

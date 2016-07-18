@@ -1,0 +1,192 @@
+#set($layout="editlayout.vm")
+#set($staticPath1="$request.contextPath/assets")
+#set($ctx="$request.contextPath")
+<head>
+<meta charset="UTF-8">
+<title>快速印刷二维码</title>
+<link rel="stylesheet"
+	href="$staticPath1/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="$staticPath1/styles/app.min.css">
+<link rel="stylesheet" href="$staticPath1/styles/cli_global.css">
+<link rel="stylesheet"
+	href="$staticPath1/font-awesome/css/font-awesome.min.css">
+<style>
+.rl {
+	position: relative;
+}
+
+.count {
+	position: absolute;
+	top: 80px;
+	right: 10px;
+	color: #999;
+}
+
+.count-desc {
+	top: 250px;
+}
+</style>
+</head>
+
+<body>
+	<div class='w-1000'>
+		<div class='row m-b-md m-t-lg text-left'>
+			<div class='col-md-6'>
+				<h3 class="text-darkblack">快速打印</h3>
+				<!-- 普通输入框 -->
+				<form action="${ctx}/article/fastsave" class='m-t-md rl'
+					method='post' id='fastform'>
+					<input type="hidden" name='qr'
+						value='${ctx}/article/getIcon?cid=${cid}'> <input
+						type="hidden" name='cid' value='${cid}'>
+					<p class="text-grey m-t-sm text-sm">
+						下方输入框内可修改实体A4纸张上打印的文字内容，并非扫码后手机上显示的内容</p>
+					<br /> <label class="radio-inline" style='padding-left: 0'>
+						<span>选择排版：</span>
+					</label> <label class="radio-inline"> <input type="radio"
+						name="inlineRadioOptions" checked="" class="has-value" value='1'>竖版
+					</label> <label class="radio-inline"> <input type="radio"
+						name="inlineRadioOptions" class="has-value" value='2'>横版
+					</label> <input type="text" class="form-control  m-t-sm"
+						placeholder="一个好的标题，会迅速吸引顾客的注意力" name='title' id="title" value=''>
+					<div class='count'>
+						<span id="title-count">0</span>/10
+					</div>
+					<textarea name="desc" id="desc" cols="20" rows="6"
+						class="form-control m-t-sm"
+						placeholder="一个好的扫码描述，会让顾客很快知道扫码后该做什么，以及他们会获得什么回报"
+						style="resize: none"></textarea>
+					<div class='count count-desc'>
+						<span id="count">0</span>/30
+					</div>
+					<!-- 				<textarea name="smms" id="" cols="20" rows="4" class= "form-control m-t-sm" placeholder= "请输入公司相关的描述" style="resize:none"></textarea> -->
+					<input type="hidden" name='printtype' value='' id="printtype">
+					<div class="m-t-lg">
+						<button type="button" class="btn green" data='print'>
+							<i class="fa fa-print fa-fw m-r-xs"> </i> 打印 &nbsp;&nbsp;
+						</button>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<button type="button" class="btn white" data='save'>
+							&nbsp;&nbsp;<i class="fa fa-save fa-fw m-r-xs"></i>保存为图片
+						</button>
+					</div>
+				</form>
+			</div>
+			<div class='col-md-6'>
+				<div id="horizontalResult" class='m-t-sm col-md-offset-2 mpng'
+					style="height: 486px; width: 360px; background: #fff; background: url('/images/s.png') no-repeat; background-position-x: 52px; background-position-y: 0px; background-size: 90%;">
+					<div class='b-a m-t-sm col-md-offset-2 '
+						style="height: 462px; width: 330px; background: #fff; border: 1px solid #fff">
+						<div
+							style='margin: 0; padding: 0; align: center; text-align: center;'>
+							<h2
+								style="margin-top: 55px; font-size: 21px; text-align: center; color: #333"
+								class='fast-title'>
+								<span style="color: #000000">这里是标题</span>
+							</h2>
+							<img src="${ctx}/article/getIcon?cid=${cid}" alt=""
+								style="width: 181px; height: 181px; margin-top: 31px">
+							<p
+								style="height: 34px; margin-top: 32px; text-align: center; align: center">
+								<img src='${ctx}/assets/img/mobile.png' />
+							</p>
+							<p
+								style='text-align: center; color: #999; max-width: 180px; margin: 0 auto; margin-top: 22px; font-size: 12px; color: #333'
+								class='fast-desc'>
+								<span style="color: #000000">这里是描述</span>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div id="verticalResult" class="mpng"
+					style="background: url('/images/h.png') no-repeat; background-position-x: -7px; background-position-y: -2px; width: 478px; height: 346px; background-size: 100%; display: none">
+					<div class='b-a m-t-lg'
+						style="width: 462px; height: 330px; background: #fff; border: 1px solid #fff; position: relative; left: 19px;">
+						<div style='margin: 0; padding: 0; float: left; width: 252px;'>
+							<h2
+								style="margin-top: 81px; font-size: 21px; text-align: center; color: #333"
+								class='fast-title'>
+								<span style="color: #000000">这里是标题</span>
+							</h2>
+							<p
+								style="height: 34px; margin-top: 46px; text-align: center; align: center">
+								<img src='${ctx}/assets/img/mobile.png' />
+							</p>
+							<p
+								style='text-align: center; color: #333; max-width: 180px; margin: 0 auto; margin-top: 27px; font-size: 12px'
+								class='fast-desc'>
+								<span style="color: #000000">这里是描述</span>
+							</p>
+						</div>
+						<div class='' style='width: 207px; float: right'>
+							<img src="${ctx}/article/getIcon?cid=${cid}" alt=""
+								style="width: 181px; height: 181px; margin-top: 72px">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
+<script language="javascript" type="text/javascript"
+	src="$staticPath1/js/jquery.min.js"></script>
+<script>
+	$(function() {
+		$('input[type=radio]').click(function() {
+			var r = $(this).val();
+			$('.mpng').hide();
+			$('.mpng').eq(r - 1).show();
+		})
+	});
+</script>
+<script>
+	$(function() {
+		//标题
+		var title = $('#title');
+		title.bind("keyup change onDblClick", function() {
+			var t_v = title.val();
+			var t_l = t_v.length;
+			if (t_l > 10) {
+				$('#title-count').css('color', 'red');
+			} else {
+				$('#title-count').css('color', '#999');
+			}
+			$('#title-count').html(t_l);
+			$('.fast-title').html(t_v);
+		});
+		//描述
+		var desc = $('#desc');
+		desc.bind("keyup change onDblClick", function() {
+			var d_v = desc.val();
+			var d_l = d_v.length;
+			if (d_l > 30) {
+				$('#count').css('color', 'red');
+			} else {
+				$('#count').css('color', '#999');
+			}
+			$('#count').html(d_l);
+			$('.fast-desc').html(d_v);
+		});
+		$('button').click(function() {
+			if (title.val().length > 10) {
+				alert('标题不能超过10字,请修改标题内容');
+				return false;
+			}
+			if (desc.val().length > 30) {
+				alert('描述不能超过30字，请修改描述内容');
+				return false;
+			}
+			var form = $('#fastform');
+			var save = $(this).attr('data');
+			$('#printtype').val(save);
+			if (save == 'print') {
+				alert('正在生成打印，请稍后');
+			} else {
+				form.submit();
+			}
+			return false;
+		});
+	});
+</script>

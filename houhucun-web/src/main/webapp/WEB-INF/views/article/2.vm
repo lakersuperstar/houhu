@@ -1,0 +1,26 @@
+#set($layout="emptylayout.vm") #set($ctx="$request.contextPath")
+<div
+	style="width: 462px; height: 330px; background: #fff; border: 1px solid #fff; position: relative; left: 19px;">
+	<div style='margin: 0; padding: 0; float: left; width: 252px;'>
+		<h2
+			style="margin-top: 81px; font-size: 21px; text-align: center; color: #000000">
+			<span style="color: #000000">${title}</span>
+		</h2>
+		<p
+			style="height: 34px; margin-top: 46px; text-align: center; align: center">
+			<img src='${ctx}/assets/img/mobile.png' />
+		</p>
+		<p
+			style='text-align: center; color: #333; max-width: 180px; margin: 0 auto; margin-top: 27px; font-size: 12px'>
+			<span style="color: #000000">${desc}</span>
+		</p>
+	</div>
+	<div class=''
+		style='width: 207px; float: right; margin: 0; padding: 0;'>
+		<h2
+			style="margin-top: 81px; font-size: 21px; text-align: center; color: #333">
+		</h2>
+		<img src="${ctx}/article/getIcon?cid=${cid}" alt=""
+			style="width: 181px; height: 181px; ">
+	</div>
+</div>

@@ -31,14 +31,10 @@ function del(id,state,item){
 }
 
 function getIcon(id,state,item){
-	$.post("${ctx}/article/getIcon",{id:id},function(data){
-		if(data == "true"){
-			queryBut(1);
-		}else{
-			alert((state==1?"恢复":"删除")+"失败");
-			$(item).attr("onclick","del("+id+",state,this)");
-		}
-	});
+	
+	window.open('${ctx}/article/toPrintCode?cid='+id);
+	
+	
 }
 
 function openedit(){
@@ -93,7 +89,7 @@ function openedit(){
 					&nbsp; <a onclick="del($!record.id,0,this)" class="font_main">删除</a>
 					#else <a onclick="del($!record.id,1,this)" class="font_main">恢复</a>
 					#end &nbsp; <a onclick="getIcon($!record.id,0,this)"
-					class="font_main">二维码</a>
+					class="font_main">打印二维码</a>
 				</td>
 			</tr>
 			#end
