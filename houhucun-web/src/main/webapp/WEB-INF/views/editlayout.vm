@@ -13,7 +13,8 @@
 	type="text/css" />
 <script language="javascript" type="text/javascript"
 	src="$staticPath/js/jquery.min.js"></script>
-<script type="text/javascript" src="$staticPath/js/H-ui.js"></script>
+<script language="javascript" type="text/javascript"
+	src="$staticPath/js/jquery.cookie.js"></script>
 <script type="text/javascript" src="$staticPath/js/header.js"></script>
 </head>
 

@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="$staticPath1/styles/app.min.css">
 <link rel="stylesheet" href="$staticPath1/styles/cli_global.css">
 <link rel="stylesheet"
-	href="$staticPath1/font-awesome/css/font-awesome.min.css">
+	href="$staticPath1/font-awesome/fonts/font-awesome.min.css">
 <style>
 .rl {
 	position: relative;
@@ -62,11 +62,11 @@
 					<!-- 				<textarea name="smms" id="" cols="20" rows="4" class= "form-control m-t-sm" placeholder= "请输入公司相关的描述" style="resize:none"></textarea> -->
 					<input type="hidden" name='printtype' value='' id="printtype">
 					<div class="m-t-lg">
-						<button type="button" class="btn green" data='print'>
-							<i class="fa fa-print fa-fw m-r-xs"> </i> 打印 &nbsp;&nbsp;
-						</button>
+						<!-- 						<button type="button" class="btn green" data='print'> -->
+						<!-- 							<i class="fa fa-print fa-fw m-r-xs"> </i> 打印 &nbsp;&nbsp; -->
+						<!-- 						</button> -->
 						&nbsp;&nbsp;&nbsp;&nbsp;
-						<button type="button" class="btn white" data='save'>
+						<button type="button" class="btn green" data='save'>
 							&nbsp;&nbsp;<i class="fa fa-save fa-fw m-r-xs"></i>保存为图片
 						</button>
 					</div>
@@ -74,7 +74,7 @@
 			</div>
 			<div class='col-md-6'>
 				<div id="horizontalResult" class='m-t-sm col-md-offset-2 mpng'
-					style="height: 486px; width: 360px; background: #fff; background: url('/images/s.png') no-repeat; background-position-x: 52px; background-position-y: 0px; background-size: 90%;">
+					style="height: 486px; width: 360px; background: #fff; background: url('/assets/images/s.png') no-repeat; background-position-x: 52px; background-position-y: 0px; background-size: 90%;">
 					<div class='b-a m-t-sm col-md-offset-2 '
 						style="height: 462px; width: 330px; background: #fff; border: 1px solid #fff">
 						<div
@@ -99,7 +99,7 @@
 					</div>
 				</div>
 				<div id="verticalResult" class="mpng"
-					style="background: url('/images/h.png') no-repeat; background-position-x: -7px; background-position-y: -2px; width: 478px; height: 346px; background-size: 100%; display: none">
+					style="background: url('/assets/images/h.png') no-repeat; background-position-x: -7px; background-position-y: -2px; width: 478px; height: 346px; background-size: 100%; display: none">
 					<div class='b-a m-t-lg'
 						style="width: 462px; height: 330px; background: #fff; border: 1px solid #fff; position: relative; left: 19px;">
 						<div style='margin: 0; padding: 0; float: left; width: 252px;'>
@@ -130,10 +130,9 @@
 </body>
 
 </html>
-<script language="javascript" type="text/javascript"
-	src="$staticPath1/js/jquery.min.js"></script>
 <script>
 	$(function() {
+		$("#userNameId").html($.cookie('user'));
 		$('input[type=radio]').click(function() {
 			var r = $(this).val();
 			$('.mpng').hide();

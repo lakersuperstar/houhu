@@ -21,5 +21,7 @@ public interface UserInfoMapper {
 	List<UserInfo> findByParam(UserInfoQueryVO query);
 
 	int countUserByParam(UserInfoQueryVO query);
+	
+	UserInfo checkUser(UserInfo record);
 
 }

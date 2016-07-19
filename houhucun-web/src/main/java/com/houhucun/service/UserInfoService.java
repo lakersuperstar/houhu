@@ -13,11 +13,11 @@ public interface UserInfoService {
 
 	boolean delUserInfo(int userId);
 
-	boolean updateUserInfo();
-
 	int countUser(UserInfoQueryVO query);
 
 	boolean updateUserInfo(UserInfo userInfo);
 
 	UserInfo getUserInfoById(int userId);
+
+	boolean checkUser(UserInfo userInfo);
 }

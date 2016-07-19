@@ -10,15 +10,33 @@
 <meta name="Keywords" content="" />
 <!--link rel="dns-prefetch" href="//dn.com"-->
 <link rel="icon" href="http://account.wxb.com/favicon.ico">
-<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-<link
-	href="/assets/bootstrap/dist/css/bootstrap-theme.min.css"
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css"
 	rel="stylesheet">
-<link rel="stylesheet" type="text/css"
-	href="/assets/css/login.css" />
-<link rel="stylesheet" type="text/css"
-	href="assets/css/passport.css" />
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css"
+	rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/assets/css/login.css" />
+<link rel="stylesheet" type="text/css" href="assets/css/passport.css" />
+<script language="javascript" type="text/javascript"
+	src="assets/js/jquery.min.js"></script>
+<script type="text/javascript">
+	function loginsubmit() {
+		$.ajax({
+			url : "/login/submit",
+			type : "POST",
+			dataType : "text",
+			contentType : "application/x-www-form-urlencoded; charset=utf-8",
+			data : $("#loginForm").serialize(),
+			error : function() {
+				showMesInfo("网络超时，请稍后再试", "error");
+			},
+			success : function(result) {
+				
+				window.location="/index";
+			}
 
+		});
+	}
+</script>
 </head>
 <body class="">
 	<!-- 通用 导航条 开始 -->
@@ -31,11 +49,11 @@
 		<div class="login">
 			<div class="login-form">
 				<h1>会员登录</h1>
-				<form id="loginForm" method="post">
+				<form id="loginForm" method="post" onsubmit="return false;">
 					<div class="form-group">
 						<label for="username" class="for-username"></label> <input
-							id="username" type="text" name="email" autofocus
-							class="form-control username" placeholder="请输入您的手机号" value="" />
+							id="username" type="text" name="account" autofocus
+							class="form-control username" placeholder="请输入您的登录账号" value="" />
 					</div>
 					<div class="form-group">
 						<label for="password" class="for-password"></label> <input
@@ -50,8 +68,9 @@
 						<div style="clear: both"></div>
 					</div>
 					<div class="form-group">
-						<button type="submit" class="btn btn-primary js-login-btn">立
-							即 登 录</button>
+
+						<a href="javascript:;" class="btn btn-primary js-login-btn"
+							onclick="loginsubmit()">登&nbsp;&nbsp;&nbsp;&nbsp;录</a>
 					</div>
 
 					<div class="form-group form-group-rememberme">
@@ -69,8 +88,7 @@
 	</div>
 	<footer>
 		<p>
-			<a
-				href="//www.houhucun.com/">Pipe</a> 京ICP备16009729号-1
+			<a href="//www.houhucun.com/">Pipe</a> 京ICP备16009729号-1
 		</p>
 	</footer>
 </body>

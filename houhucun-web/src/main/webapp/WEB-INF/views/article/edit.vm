@@ -7,7 +7,6 @@
 <head>
 <meta charset="utf-8">
 <title>文章编辑器</title>
-<script type="text/javascript" src="$staticPath1/js/jquery-1.10.2.js"></script>
 <script src="http://malsup.github.io/jquery.form.js"></script>
 <script type="text/javascript"
 	src="$staticPath1/ueditor/ueditor.config.js"></script>

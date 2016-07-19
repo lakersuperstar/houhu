@@ -4,10 +4,10 @@
 	<div class="head_top">
 		<ul>
 			<li class="fl">pipe</li>
-			<li class="fr font_sup"><a href="javascript:;">admin_01<i
-					class="down01"></i></a></li>
-			<li class="fr"><span><a href="javascript:;">登录</a></span><i
-				class="i02">/</i></li>
+			<li class="fr font_sup"><a href="javascript:;" id="logoutId"
+				onclick="logout()">退出<i class="down01"></i></a></li>
+			<li class="fr"><span><a href="javascript:;"
+					id="userNameId"></a></span><i class="i02">/</i></li>
 		</ul>
 	</div>
 	<!--head_top end-->
@@ -28,3 +28,26 @@
 	<!--header_center start-->
 </div>
 <!--头部 end-->
+
+<script type="text/javascript">
+	
+
+	$(function() {
+		$("#userNameId").html($.cookie('user'));
+	});
+
+	// 	window.onload = function (){ 
+	// 		$("#userNameId").html($.cookie('user'));
+	// 	};
+	// 	
+	// 	jQuery(document).ready(function() {
+	// 		$("#userNameId").html($.cookie('user'));
+	// 	});
+
+	function logout() {
+		$.removeCookie('ch', {
+			path : '/'
+		});
+		window.location = "/login.html";
+	};
+</script>
