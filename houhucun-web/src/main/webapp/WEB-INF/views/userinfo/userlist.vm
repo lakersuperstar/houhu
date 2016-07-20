@@ -153,8 +153,8 @@ function update(id){
 		</div>
 
 		<div class="row cl text-l">
-			<input class="btn btn-warning radius mar_l25" type="button"
-				value="新增用户" data-toggle="modal" href="#channel04">
+		#if($!{nowuser.role} == 1 || $!{nowuser.role} == 2)	<input class="btn btn-warning radius mar_l25" type="button"
+				value="新增用户" data-toggle="modal" href="#channel04"> #end
 		</div>
 	</form>
 	<table
@@ -178,7 +178,7 @@ function update(id){
 				<td>$!{record.userName}</td>
 				<td>$!{record.mobile}</td>
 				<td>$!{record.address}</td>
-				<td>$!{record.role}</td>
+				<td>#if($!{record.role}==1) 管理员 #end #if($!{record.role}==2) 操作员 #end #if($!{record.role}==3) 客户 #end</td>
 				<td>$!date.format('yyyy-MM-dd HH:mm:ss',$!record.createDate)</td>
 				<td>#if($!{record.yn}==0) 无效 #else 有效 #end</td>
 				<td>#if($!{record.yn}==1) <a class="font_main"
@@ -197,6 +197,7 @@ function update(id){
 <div id="channel04" class="modal hide fade" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">
+	
 		<h3 id="myModalLabel">增加用户</h3>
 		<a class="close" data-dismiss="modal" aria-hidden="true"
 			href="javascript:void();">×</a>
@@ -231,9 +232,10 @@ function update(id){
 			<div class="row cl">
 				<label class="form-label col-xs-3">角色：</label>
 				<div class="formControls col-xs-5">
-					<input type="radio" class="input" name="role" value="1">后台账号
+					#if($!{nowuser.role} == 1) <input type="radio" class="input" name="role" value="1">管理员 
 					<input type="radio" class="input" name="role" value="2"
-						checked="true">前台账号
+						checked="true">操作员 #end
+					<input type="radio" class="input" name="role" value="3">客戶
 				</div>
 			</div>
 		</form>
@@ -283,9 +285,10 @@ function update(id){
 			<div class="row cl">
 				<label class="form-label col-xs-3">角色：</label>
 				<div class="formControls col-xs-5">
-					<input type="radio" class="input" name="role" value="1">后台账号
+					#if($!{nowuser.role} == 1) <input type="radio" class="input" name="role" value="1">管理员 
 					<input type="radio" class="input" name="role" value="2"
-						checked="true">前台账号
+						checked="true">操作员 #end
+					<input type="radio" class="input" name="role" value="3">客戶
 				</div>
 			</div>
 		</form>

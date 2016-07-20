@@ -3,6 +3,8 @@ package com.houhucun.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.houhucun.controller.vo.Page;
 import com.houhucun.domain.UserInfo;
 import com.houhucun.domain.UserInfoQueryVO;
+import com.houhucun.service.CookieService;
 import com.houhucun.service.UserInfoService;
 import com.houhucun.util.UserInitUtil;
 
@@ -23,8 +26,11 @@ public class UserInfoController {
 	@Resource(name = "userInfoService")
 	private UserInfoService userInfoService;
 
+	@Resource(name="cookieService")
+	private CookieService cookieService;
 	@RequestMapping("list")
-	public String getUserInfo(ModelMap map, UserInfoQueryVO userInfoQuery) {
+	public String getUserInfo(HttpServletResponse response,
+			HttpServletRequest request,ModelMap map, UserInfoQueryVO userInfoQuery) {
 		int counts = userInfoService.countUser(userInfoQuery);
 		Page page = new Page();
 		if (userInfoQuery.getPageNo() == 0) {
@@ -39,6 +45,9 @@ public class UserInfoController {
 		map.put("userInfos", userInfos);
 		map.put("pageBut", page.sizeToString(userInfoQuery.getFunctionName()));
 		map.put("userInfoQuery", userInfoQuery);
+		String user = cookieService.getCookieUser(request);
+		UserInfo ui = userInfoService.getUserInfoByAccount(user);
+		map.put("nowuser", ui);
 		return "/userinfo/userlist";
 	}
 

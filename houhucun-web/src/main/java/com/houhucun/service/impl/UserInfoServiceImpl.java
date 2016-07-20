@@ -58,4 +58,9 @@ public class UserInfoServiceImpl implements UserInfoService {
 		return userInfo.getPassword().equals(checkUser.getPassword());
 	}
 
+	@Override
+	public UserInfo getUserInfoByAccount(String account) {
+		return userInfoMapper.selectByAccount(account);
+	}
+
 }

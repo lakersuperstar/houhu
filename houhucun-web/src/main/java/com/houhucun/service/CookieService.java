@@ -1,5 +1,7 @@
 package com.houhucun.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 public interface CookieService {
 
 	/**
@@ -15,4 +17,9 @@ public interface CookieService {
 	 * @return
 	 */
 	String decrypt(String content);
+	
+	/**
+	 * 获取cookie中的user
+	 */
+	String getCookieUser(HttpServletRequest request);
 }
