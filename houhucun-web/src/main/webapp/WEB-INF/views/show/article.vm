@@ -16,6 +16,11 @@
 <script language="javascript" type="text/javascript"
 	src="$staticPath/js/jquery.min.js"></script>
 <title>$!{article.title}</title>
+<style>
+body img{
+max-width:100%;
+}
+</style>
 </head>
 <body id="activity-detail" class="zh_CN mm_appmsg">
 	<div id="js_article" class="rich_media">
@@ -47,5 +52,10 @@
 	</div>
 	</div>
 </body>
+<script>
+$(function(){
+	$('img').css({'height':'auto'});
+})
+</script>
 </html>
 
