@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>后胡村管理</title>
+<title>pipe管理中心</title>
 <link href="$staticPath/css/base.css" rel="stylesheet" type="text/css" />
 <link href="$staticPath/css/common.css" rel="stylesheet">
 <link href="$staticPath/css/H-ui.min.css" rel="stylesheet"

@@ -32,8 +32,7 @@
 .unified-header .social .logo, .unified-header .reactions li.reaction a,
 	.unified-header .vertical_title a {
 	background:
-		url(https://webappstatic.buzzfeed.com/static/images/global/unified_sprite.png?v=1465860945);
-	text-indent: -9999em;
+		url();
 	background-repeat: no-repeat;
 }
 

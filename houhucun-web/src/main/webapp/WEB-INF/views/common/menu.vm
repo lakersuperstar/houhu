@@ -17,18 +17,18 @@
 			<dd>
 				<ul>
 					<li><a href="${ctx}/article/list">文章列表</a></li>
-					<li><a href="${ctx}/productController/list">产品列表</a></li>
+<!-- 					<li><a href="${ctx}/productController/list">产品列表</a></li> -->
 				</ul>
 			</dd>
 		</dl>
-		<dl id="menu-article">
-			<dt>字典管理</dt>
-			<dd>
-				<ul>
-					<li><a href="${ctx}/dicController/list.action">产品类型</a></li>
-				</ul>
-			</dd>
-		</dl>
+		<!-- 		<dl id="menu-article"> -->
+		<!-- 			<dt>字典管理</dt> -->
+		<!-- 			<dd> -->
+		<!-- 				<ul> -->
+		<!-- 					<li><a href="${ctx}/dicController/list.action">产品类型</a></li> -->
+		<!-- 				</ul> -->
+		<!-- 			</dd> -->
+		<!-- 		</dl> -->
 	</div>
 </div>
 <!--左侧end-->

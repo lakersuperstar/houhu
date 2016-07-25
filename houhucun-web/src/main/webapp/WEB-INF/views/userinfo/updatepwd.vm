@@ -17,13 +17,65 @@
 		});
 	}
 </script>
-<form action="" method="post" id="updatePwdForm">
-	原始密码： <input name="password" type="password"> 新密码： <input
-		name="newPassword" type="password"> 新密码： <input
-		name="newPassword2" type="password">
+<style>
+.form-horizontal{
+padding:10px;
+}
+.form-horizontal .row{
+	height:32px;
+}
+.form-horizontal .row:after{
+	content:'';
+	clear:both;
+	height:1px;
+	visibility:hidden;
+}
+.form-horizontal .control-label{
+	float:left;
+	width:100px;
+	color:#666;
+	line-height:32px;
+}
+.form-horizontal .controls{
+	float:left;
+	line-height:32px;
+}
+.form-horizontal .controls input{
+	border:#ddd solid 1px;
+	height:24px;
+	border-radius:3px;
+	line-height:24px;
+}
+.form-horizontal .submitBtn{
+	height:30px;
+	padding:0 12px;
+	border-radius:4px;
+	border:0 none;
+	background-image: linear-gradient(to bottom,#08c,#04c);
+	font-size:14px;
+	color:#fff;
+	margin:10px 0 0 100px;
+}
+</style>
 
-	<input class="" type="button" 
-		onclick="updatepwd()" value="确认修改">
-
-
+<form action="" method="post" id="updatePwdForm" class="form-horizontal">
+	<div class="row">
+		<div class="control-label">原始密码： </div>
+		<div class="controls">
+			<input name="password" type="password">
+		</div>
+	</div>
+	<div class="row">
+		<div class="control-label">新密码： </div>
+		<div class="controls">
+			<input name="newPassword" type="password"/>
+		</div>
+	</div>
+	<div class="row">
+		<div class="control-label">新密码： </div>
+		<div class="controls">
+			<input name="newPassword2" type="password"/>
+		</div>
+	</div>
+	<input class="submitBtn" type="button" onclick="updatepwd()" value="确认修改"/>
 </form>

@@ -6,6 +6,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +25,9 @@ import com.houhucun.util.UserInitUtil;
 @Controller
 @RequestMapping("/userInfo")
 public class UserInfoController {
+
+	private static Logger LOGGER = LoggerFactory
+			.getLogger(UserInfoController.class);
 
 	@Resource(name = "userInfoService")
 	private UserInfoService userInfoService;
@@ -65,18 +70,34 @@ public class UserInfoController {
 	@RequestMapping("add")
 	@ResponseBody
 	public Object add(UserInfo userInfo, HttpServletRequest request) {
-		String usr = cookieService.getCookieUser(request);
-		userInfo.setCreateAccount(usr);
-		userInfo.setPassword(UserInitUtil.getInitPassword());
-		return userInfoService.addUserInfo(userInfo);
+		try {
+			String usr = cookieService.getCookieUser(request);
+			userInfo.setCreateAccount(usr);
+			userInfo.setPassword(UserInitUtil.getInitPassword());
+			return userInfoService.addUserInfo(userInfo);
+		} catch (Exception e) {
+			LOGGER.error(userInfo.getUserAccount() + "添加失败!", e);
+			if (e.getMessage().contains("Duplicate entry")) {
+				return userInfo.getUserAccount() + "账号已经存在，请重新填写账号!";
+			} else {
+				return "添加失败.";
+			}
+
+		}
+
 	}
 
 	@RequestMapping("reset")
 	@ResponseBody
 	public Object resetPassword(UserInfo userInfo) {
-		userInfo.setPassword(UserInitUtil.getInitPassword());
-		if (userInfoService.updateUserInfoPwd(userInfo)) {
-			return "ok";
+		try {
+			userInfo.setPassword(UserInitUtil.getInitPassword());
+			if (userInfoService.updateUserInfoPwd(userInfo)) {
+				return "ok";
+			}
+		} catch (Exception e) {
+			LOGGER.error(userInfo.getUserId() + "重置密码失败!", e);
+			return "error";
 		}
 		return "error";
 	}
@@ -90,32 +111,41 @@ public class UserInfoController {
 	@RequestMapping("updatePwd")
 	@ResponseBody
 	public Object updatePassword(UserInfo userInfo, HttpServletRequest request) {
-		if (userInfo == null || userInfo.getPassword() == null) {
-			return "error";
-		}
 		String usr = cookieService.getCookieUser(request);
 		UserInfo userOld = userInfoService.getUserInfoByAccount(usr);
-		if (userOld.getPassword().equals(
-				UserInitUtil.getPassword(userInfo.getPassword()))) {
-			userOld.setPassword(UserInitUtil.getPassword(userInfo
-					.getNewPassword()));
-			boolean flag = userInfoService.updateUserInfoPwd(userOld);
-			if (flag) {
-				return "ok";
+		try {
+			if (userInfo == null || userInfo.getPassword() == null) {
+				return "error";
+			}
+			if (userOld.getPassword().equals(
+					UserInitUtil.getPassword(userInfo.getPassword()))) {
+				userOld.setPassword(UserInitUtil.getPassword(userInfo
+						.getNewPassword()));
+				boolean flag = userInfoService.updateUserInfoPwd(userOld);
+				if (flag) {
+					return "ok";
+				} else {
+					return "error";
+				}
 			} else {
 				return "error";
 			}
-		} else {
+		} catch (Exception e) {
+			LOGGER.error(usr + "更新密码失败", e);
 			return "error";
 		}
-
 	}
 
 	@RequestMapping("update")
 	@ResponseBody
 	public Object update(UserInfo userInfo) {
-		userInfo.setYn(1);
-		return userInfoService.updateUserInfo(userInfo);
+		try {
+			userInfo.setYn(1);
+			return userInfoService.updateUserInfo(userInfo);
+		} catch (Exception e) {
+			LOGGER.error(userInfo.getUserAccount() + "更新成功！", e);
+			return "false";
+		}
 	}
 
 	@RequestMapping("get")
@@ -134,11 +164,19 @@ public class UserInfoController {
 	@RequestMapping("del")
 	@ResponseBody
 	public Object del(UserInfo userInfo) {
-		UserInfo userInfoNew = new UserInfo();
-		userInfoNew.setUserId(userInfo.getUserId());
-		userInfoNew.setYn(userInfo.getYn());
-		if (userInfoService.delUserInfo(userInfo.getUserId())) {
-			return "ok";
+		if (userInfo == null || userInfo.getUserId() <= 0) {
+			LOGGER.error("传入的用户为空，删除失败!");
+			return "error";
+		}
+		try {
+			UserInfo userInfoNew = new UserInfo();
+			userInfoNew.setUserId(userInfo.getUserId());
+			userInfoNew.setYn(userInfo.getYn());
+			if (userInfoService.delUserInfo(userInfo.getUserId())) {
+				return "ok";
+			}
+		} catch (Exception e) {
+			LOGGER.error(userInfo.getUserId() + "删除失败!", e);
 		}
 		return "error";
 

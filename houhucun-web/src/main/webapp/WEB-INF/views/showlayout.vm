@@ -4,7 +4,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>后胡信息</title>
+<title>pipe信息</title>
 <link rel="stylesheet" href="$staticPath/food/css/common.css" />
 <link rel="stylesheet" href="$staticPath/food/css/food.css" />
 <script language="javascript" type="text/javascript"
@@ -27,7 +27,9 @@
 				<div id="upper-wrapper" class="page-wrapper">
 					<div class="upper">
 						<div id="logo" class="social page-logo">
-							<a class="logo" rel:gt_act="home" href="/">BuzzFeed</a>
+							<a class="logo" rel:gt_act="home" href="/"> <img
+								src="/assets/images/head_logo.png" />
+							</a>
 						</div>
 					</div>
 				</div>
@@ -38,7 +40,7 @@
 						<div class="bf_dom nav-page__menu nav-left" rel:bf_bucket="gtrack"
 							rel:gt_cat="[ttp]:header/menu">
 							<div id="menu-news" class="menu-item ">
-								<span> <a href="/show/list" rel:gt_act="news">水果</a></span>
+								<span> <a href="/show/list" rel:gt_act="news">首页</a></span>
 							</div>
 						</div>
 						<!-- 右侧搜索 -->
@@ -94,21 +96,8 @@
 		<div class="footerinner">
 			<ul class="list--unstyled footer-menu footer-menu--main">
 
-				<li><a class="footer-menu__item"
-					data-bfa="@a:Main-Nav;@d:advertise;" rel:gt_act="advertise"
-					href="/advertise">advertise</a></li>
+				<li><a href="">Pipe</a> 京ICP备16009729号-1</li>
 
-				<li><a class="footer-menu__item"
-					data-bfa="@a:Main-Nav;@d:jobs;" rel:gt_act="jobs"
-					href="/about/jobs">jobs</a></li>
-
-				<li><a class="footer-menu__item"
-					data-bfa="@a:Main-Nav;@d:mobile;" rel:gt_act="mobile"
-					href="/tools/mobile-ios">mobile</a></li>
-
-				<li><a class="footer-menu__item"
-					data-bfa="@a:Main-Nav;@d:newsletter;" rel:gt_act="newsletter"
-					href="/tools/email">newsletter</a></li>
 			</ul>
 		</div>
 	</footer>
@@ -139,7 +128,7 @@
 	top: 50%;
 	margin-top: -9px;
 	right: 3px;
-	background-image: url(http://www.haotu.net/up/3358/256/53-Loupe.png);
+	background-image: url();
 	background-size: 100% auto;
 	border: 0 none;
 	background-color: transparent

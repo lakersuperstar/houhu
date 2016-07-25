@@ -3,7 +3,7 @@
 	<!--head_top start-->
 	<div class="head_top">
 		<ul>
-			<li class="fl">pipe</li>
+			<li class="fl">欢迎来到pipe信息管理网站</li>
 			<li class="fr font_sup"><a href="javascript:;" id="logoutId"
 				onclick="logout()">退出<i class="down01"></i></a></li>
 			<li class="fr"><span><a href="javascript:;"

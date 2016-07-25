@@ -31,7 +31,7 @@ function subBtn(){
 			if(data=='true'){
 				queryBut(1);
 			}else{
-				alert("添加失败");
+				alert(data);
 			}
 			$("#subBtn").attr("onclick","subBtn()");
 		});

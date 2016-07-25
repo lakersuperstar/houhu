@@ -4,34 +4,54 @@
 	src="$staticPath/js/lib/bootstrap-modal/2.2.4/bootstrap-modalmanager.js"></script>
 <script
 	src="$staticPath/js/lib/bootstrap-modal/2.2.4/bootstrap-modal.js"></script>
-
-<div class="row">
-	<div class="span9">
-		<div class="row">
-			<div class="span3">账号</div>
-			<div class="span6">$!{userInfos.userAccount}</div>
+<style>
+.form-horizontal{
+padding:10px;
+}
+.form-horizontal .row{
+	height:27px;
+}
+.form-horizontal .row:after{
+	content:'';
+	clear:both;
+	height:1px;
+	visibility:hidden;
+}
+.form-horizontal .control-label{
+	float:left;
+	width:100px;
+	color:#666;
+	line-height:27px;
+}
+.form-horizontal .controls{
+	float:left;
+	line-height:27px;
+}
+</style>
+<form class="form-horizontal">
+		<div class="row control-group">
+			<label class="control-label">账号</label>
+			<div class="controls">$!{userInfos.userAccount}</div>
 		</div>
 		<div class="row">
-			<div class="span3">姓名</div>
-			<div class="span6">$!{userInfos.userName}</div>
+			<div class="control-label">姓名</div>
+			<div class="controls">$!{userInfos.userName}</div>
 		</div>
 		<div class="row">
-			<div class="span3">手机号</div>
-			<div class="span6">$!{userInfos.mobile}</div>
+			<div class="control-label">手机号</div>
+			<div class="controls">$!{userInfos.mobile}</div>
 		</div>
 		<div class="row">
-			<div class="span3">联系地址</div>
-			<div class="span6">$!{userInfos.address}</div>
+			<div class="control-label">联系地址</div>
+			<div class="controls">$!{userInfos.address}</div>
 		</div>
 		<div class="row">
-			<div class="span3">角色</div>
-			<div class="span6">#if($!{userInfos.role} == 1) 管理员#end
+			<div class="control-label">角色</div>
+			<div class="controls">#if($!{userInfos.role} == 1) 管理员#end
 				#if($!{userInfos.role} == 2) 操作员#end #if($!{userInfos.role} == 3)
 				客户#end</div>
 		</div>
-	</div>
-</div>
-
+</form>
 
 
 
