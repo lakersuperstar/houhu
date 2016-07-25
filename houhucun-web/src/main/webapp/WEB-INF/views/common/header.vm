@@ -5,7 +5,8 @@
 		<ul>
 			<li class="fl">欢迎来到pipe信息管理网站</li>
 			<li class="fr font_sup"><a href="javascript:;" id="logoutId"
-				onclick="logout()">退出<i class="down01"></i></a></li>
+				onclick="logout()">退出<i class="down01"></i></a> &nbsp;<a
+				href="http://www.houhucun.com">首页</a></li>
 			<li class="fr"><span><a href="javascript:;"
 					id="userNameId"></a></span><i class="i02">/</i></li>
 		</ul>
@@ -30,8 +31,6 @@
 <!--头部 end-->
 
 <script type="text/javascript">
-	
-
 	$(function() {
 		$("#userNameId").html($.cookie('user'));
 	});

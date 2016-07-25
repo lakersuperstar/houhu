@@ -9,6 +9,6 @@ public class MainIndexController {
 
 	@RequestMapping("")
 	public String index() {
-		return "/show/list";
+		return "redirect:/show/list";
 	}
 }

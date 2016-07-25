@@ -7,6 +7,15 @@
 <title>pipe信息</title>
 <link rel="stylesheet" href="$staticPath/food/css/common.css" />
 <link rel="stylesheet" href="$staticPath/food/css/food.css" />
+<style>
+.loginLink{
+	float:right;
+	line-height:26px;
+	color:#06f;
+	font-size:14px;
+	text-decoration:none;
+}
+</style>
 <script language="javascript" type="text/javascript"
 	src="$staticPath/js/jquery.min.js"></script>
 <script>
@@ -52,6 +61,7 @@
 									name="title" id="searchName">
 								<button class="page-search__search-button" onclick="queryBut(1)"></button>
 							</form>
+							<a href="/login.html" class="loginLink">登陆管理</a></
 						</div>
 					</div>
 				</div>
@@ -111,6 +121,8 @@
 	background: #fff;
 	padding: 0 10px;
 	box-sizing: border-box;
+	float:left;
+	margin-right:10px;
 }
 
 .page-search__form input {
