@@ -95,6 +95,21 @@ function del(id,state,item){
 }
 
 
+function retpwd(id,state,item){
+	if(confirm("是否确认重置密码？")){
+		$(item).removeAttr("onclick");
+		$.post("${ctx}/userInfo/reset",{userId:id},function(data){
+			if(eval(data) == "ok"){
+				queryBut(1);
+			}else{
+				alert("重置失败!");
+			}
+		});
+	}
+
+}
+
+
 function update(id){
 	$.post("${ctx}/userInfo/get",{userId:id},function(data){
 	if(data != null){
@@ -153,8 +168,9 @@ function update(id){
 		</div>
 
 		<div class="row cl text-l">
-		#if($!{nowuser.role} == 1 || $!{nowuser.role} == 2)	<input class="btn btn-warning radius mar_l25" type="button"
-				value="新增用户" data-toggle="modal" href="#channel04"> #end
+			#if($!{nowuser.role} == 1 || $!{nowuser.role} == 2) <input
+				class="btn btn-warning radius mar_l25" type="button" value="新增用户"
+				data-toggle="modal" href="#channel04"> #end
 		</div>
 	</form>
 	<table
@@ -165,7 +181,7 @@ function update(id){
 				<th>用户姓名</th>
 				<th>手机号</th>
 				<th>联系地址</th>
-				<th>角色</th>
+				<th>角色|创建者</th>
 				<th>创建时间</th>
 				<th>是否有效</th>
 				<th>操作</th>
@@ -178,13 +194,16 @@ function update(id){
 				<td>$!{record.userName}</td>
 				<td>$!{record.mobile}</td>
 				<td>$!{record.address}</td>
-				<td>#if($!{record.role}==1) 管理员 #end #if($!{record.role}==2) 操作员 #end #if($!{record.role}==3) 客户 #end</td>
+				<td>#if($!{record.role}==1) 管理员 #end #if($!{record.role}==2)
+					操作员 #end #if($!{record.role}==3) 客户 #end | $!{record.createAccount}</td>
 				<td>$!date.format('yyyy-MM-dd HH:mm:ss',$!record.createDate)</td>
 				<td>#if($!{record.yn}==0) 无效 #else 有效 #end</td>
 				<td>#if($!{record.yn}==1) <a class="font_main"
-					onclick="del($!record.userId,0,this)">删除</a> &nbsp <a class="font_main" data-toggle="modal"  href="#channel03"
+					onclick="del($!record.userId,0,this)">删除</a> &nbsp <a
+					class="font_main" data-toggle="modal" href="#channel03"
 					onclick="update($!record.userId)">修改</a> #else <a
 					onclick="del($!record.userId,1,this)" class="font_main">恢复</a> #end
+					<a class="font_main" onclick="retpwd($!record.userId,0,this)">重置密码</a>
 				</td>
 			</tr>
 			#end
@@ -197,7 +216,7 @@ function update(id){
 <div id="channel04" class="modal hide fade" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">
-	
+
 		<h3 id="myModalLabel">增加用户</h3>
 		<a class="close" data-dismiss="modal" aria-hidden="true"
 			href="javascript:void();">×</a>
@@ -232,10 +251,10 @@ function update(id){
 			<div class="row cl">
 				<label class="form-label col-xs-3">角色：</label>
 				<div class="formControls col-xs-5">
-					#if($!{nowuser.role} == 1) <input type="radio" class="input" name="role" value="1">管理员 
-					<input type="radio" class="input" name="role" value="2"
-						checked="true">操作员 #end
-					<input type="radio" class="input" name="role" value="3">客戶
+					#if($!{nowuser.role} == 1) <input type="radio" class="input"
+						name="role" value="1">管理员 <input type="radio"
+						class="input" name="role" value="2" checked="true">操作员
+					#end <input type="radio" class="input" name="role" value="3">客戶
 				</div>
 			</div>
 		</form>
@@ -249,8 +268,10 @@ function update(id){
 
 
 
-<!--修改库房 弹出层-->	<div id="channel03" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
- <div class="modal-header">
+<!--修改库房 弹出层-->
+<div id="channel03" class="modal hide fade" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
 		<h3 id="myModalLabel">修改用户</h3>
 		<a class="close" data-dismiss="modal" aria-hidden="true"
 			href="javascript:void();">×</a>
@@ -260,8 +281,9 @@ function update(id){
 			id="updateForm">
 			<div class="row cl">
 				<label class="form-label col-xs-3">用户账号：</label>
-				<div class="formControls col-xs-5"><input type="hidden"  name="userId">
-					<input type="text" class="input-text require" name="userAccount" disabled="disabled" >
+				<div class="formControls col-xs-5">
+					<input type="hidden" name="userId"> <input type="text"
+						class="input-text require" name="userAccount" disabled="disabled">
 				</div>
 			</div>
 			<div class="row cl">
@@ -285,16 +307,17 @@ function update(id){
 			<div class="row cl">
 				<label class="form-label col-xs-3">角色：</label>
 				<div class="formControls col-xs-5">
-					#if($!{nowuser.role} == 1) <input type="radio" class="input" name="role" value="1">管理员 
-					<input type="radio" class="input" name="role" value="2"
-						checked="true">操作员 #end
-					<input type="radio" class="input" name="role" value="3">客戶
+					#if($!{nowuser.role} == 1) <input type="radio" class="input"
+						name="role" value="1">管理员 <input type="radio"
+						class="input" name="role" value="2" checked="true">操作员
+					#end <input type="radio" class="input" name="role" value="3">客戶
 				</div>
 			</div>
 		</form>
 	</div>
 	<div class="modal-footer">
-		<button class="btn btn-primary radius" id="subBtn" onclick="updateBtn()">提交</button>
+		<button class="btn btn-primary radius" id="subBtn"
+			onclick="updateBtn()">提交</button>
 	</div>
 </div>
 <!--修改库房 end-->

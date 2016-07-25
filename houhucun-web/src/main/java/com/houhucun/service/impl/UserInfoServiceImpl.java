@@ -40,7 +40,8 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Override
 	public boolean updateUserInfo(UserInfo userInfo) {
-		return userInfoMapper.updateByPrimaryKeySelective(userInfo) == 1 ? true : false;
+		return userInfoMapper.updateByPrimaryKeySelective(userInfo) == 1 ? true
+				: false;
 	}
 
 	@Override
@@ -49,13 +50,14 @@ public class UserInfoServiceImpl implements UserInfoService {
 	}
 
 	@Override
-	public boolean checkUser(UserInfo userInfo) {
+	public UserInfo checkUser(UserInfo userInfo) {
 		UserInfo checkUser = userInfoMapper.checkUser(userInfo);
-		if (checkUser == null || StringUtils.isBlank(checkUser.getUserAccount())
+		if (checkUser == null
+				|| StringUtils.isBlank(checkUser.getUserAccount())
 				|| StringUtils.isBlank(checkUser.getPassword())) {
-			return false;
+			return null;
 		}
-		return userInfo.getPassword().equals(checkUser.getPassword());
+		return checkUser;
 	}
 
 	@Override
@@ -63,4 +65,8 @@ public class UserInfoServiceImpl implements UserInfoService {
 		return userInfoMapper.selectByAccount(account);
 	}
 
+	@Override
+	public boolean updateUserInfoPwd(UserInfo userInfo) {
+		return userInfoMapper.updatePwd(userInfo) == 1 ? true : false;
+	}
 }

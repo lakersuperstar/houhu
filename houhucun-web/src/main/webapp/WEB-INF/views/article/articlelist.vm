@@ -32,7 +32,7 @@ function del(id,state,item){
 
 function getIcon(id,state,item){
 	
-	window.open('${ctx}/article/toPrintCode?cid='+id);
+	window.open('${ctx}/code/toPrintCode?cid='+id);
 	
 	
 }
@@ -72,6 +72,7 @@ function openedit(){
 				<th>文章摘要</th>
 				<th>文章作者</th>
 				<th>创建时间</th>
+				<th>创建账号</th>
 				<th>是否有效</th>
 				<th>操作</th>
 			</tr>
@@ -83,6 +84,7 @@ function openedit(){
 				<td>$!{record.summary}</td>
 				<td>$!{record.writer}</td>
 				<td>$!date.format('yyyy-MM-dd HH:mm:ss',$!record.createTime)</td>
+				<td>$!{record.createAccount}</td>
 				<td>#if($!{record.yn}==0) 无效 #else 有效 #end</td>
 				<td>#if($!{record.yn}==1) <a
 					onclick="update($!record.id,0,this)" class="font_main">修改</a>

@@ -13,6 +13,8 @@
 		<result column="yn" property="yn" jdbcType="INTEGER" />
 		<result column="face_img" property="faceImg" jdbcType="VARCHAR" />
 		<result column="summary" property="summary" jdbcType="VARCHAR" />
+		<result column="create_account" property="createAccount"
+			jdbcType="VARCHAR" />
 	</resultMap>
 	<resultMap id="ResultMapWithBLOBs" type="com.houhucun.domain.ArticleList"
 		extends="BaseResultMap">
@@ -22,7 +24,7 @@
 		id, user_id, product_id, title, writer, type, create_time,
 		update_time,
 		yn, face_img,
-		summary
+		summary,create_account
 	</sql>
 	<sql id="Blob_Column_List">
 		info
@@ -33,7 +35,7 @@
 		title, writer, type,
 		create_time, yn,
 		face_img,
-		summary,info)
+		summary,info,create_account)
 		values ( #{userId,jdbcType=INTEGER},
 		#{productId,jdbcType=INTEGER},
 		#{title,jdbcType=VARCHAR},
@@ -41,7 +43,7 @@
 		now(),1,
 		#{faceImg,jdbcType=VARCHAR},
 		#{summary,jdbcType=VARCHAR},
-		#{info,jdbcType=LONGVARCHAR})
+		#{info,jdbcType=LONGVARCHAR},#{createAccount,jdbcType=VARCHAR})
 	</insert>
 
 	<update id="updateByPrimaryKey" parameterType="com.houhucun.domain.ArticleList">
@@ -50,12 +52,15 @@
 		set
 		product_id =
 		#{productId,jdbcType=INTEGER},
-		title = #{title,jdbcType=VARCHAR},
+		title =
+		#{title,jdbcType=VARCHAR},
 		writer = #{writer,jdbcType=VARCHAR},
-		type = #{type,jdbcType=INTEGER},
+		type =
+		#{type,jdbcType=INTEGER},
 		update_time = now(),
 		face_img
-		= #{faceImg,jdbcType=VARCHAR},
+		=
+		#{faceImg,jdbcType=VARCHAR},
 		summary =
 		#{summary,jdbcType=VARCHAR},
 		info=
@@ -63,8 +68,8 @@
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 
-	<update id="updateYnById"  parameterType="com.houhucun.domain.ArticleList">
-	update
+	<update id="updateYnById" parameterType="com.houhucun.domain.ArticleList">
+		update
 		article_list
 		set yn = #{yn},
 		update_time = now()
@@ -83,6 +88,9 @@
 			<if test="type != 0">
 				and type = #{type}
 			</if>
+			<if test="createAccount != null and createAccount != ''">
+				and create_account = #{createAccount}
+			</if>
 		</where>
 	</select>
 	<select id="selectByParam" resultMap="BaseResultMap"
@@ -97,6 +105,9 @@
 			</if>
 			<if test="type != 0">
 				and type = #{type}
+			</if>
+			<if test="createAccount != null and createAccount != ''">
+				and create_account = #{createAccount}
 			</if>
 		</where>
 		limit #{startrownum} , #{pageSize}

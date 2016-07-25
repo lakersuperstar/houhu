@@ -80,6 +80,7 @@
 			<mvc:mapping path="/productController/**" />
 			<mvc:mapping path="/userInfo/**" />
 			<mvc:exclude-mapping path="/show/**" />
+			<mvc:exclude-mapping path="/code/**" />
 			<bean class="com.houhucun.interceptor.LoginHandlerInterceptor">
 			</bean>
 		</mvc:interceptor>

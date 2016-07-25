@@ -27,6 +27,8 @@ public class ArticleList {
 
 	private String info;
 
+	private String createAccount;
+
 	public int getId() {
 		return id;
 	}
@@ -122,4 +124,13 @@ public class ArticleList {
 	public void setInfo(String info) {
 		this.info = info;
 	}
+
+	public String getCreateAccount() {
+		return createAccount;
+	}
+
+	public void setCreateAccount(String createAccount) {
+		this.createAccount = createAccount;
+	}
+
 }

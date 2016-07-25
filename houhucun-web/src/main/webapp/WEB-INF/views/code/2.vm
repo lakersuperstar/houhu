@@ -20,7 +20,7 @@
 		<h2
 			style="margin-top: 81px; font-size: 21px; text-align: center; color: #333">
 		</h2>
-		<img src="${ctx}/article/getIcon?cid=${cid}" alt=""
+		<img src="${ctx}/code/getIcon?cid=${cid}" alt=""
 			style="width: 181px; height: 181px; ">
 	</div>
 </div>

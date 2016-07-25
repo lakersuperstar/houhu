@@ -27,19 +27,21 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
 	private CookieService cookieService;
 
 	@Override
-	public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3)
+	public void afterCompletion(HttpServletRequest arg0,
+			HttpServletResponse arg1, Object arg2, Exception arg3)
 			throws Exception {
 
 	}
 
 	@Override
-	public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, ModelAndView arg3)
-			throws Exception {
+	public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1,
+			Object arg2, ModelAndView arg3) throws Exception {
 
 	}
 
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) throws Exception {
+	public boolean preHandle(HttpServletRequest request,
+			HttpServletResponse response, Object arg2) throws Exception {
 		// 1、请求到登录页面 放行
 		if (request.getServletPath().endsWith(loginUrl)) {
 			return true;
@@ -63,7 +65,10 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
 				}
 			}
 			if (StringUtils.isNotBlank(user) && StringUtils.isNotBlank(login)) {
-				if (user.equals(cookieService.decrypt(login))) {
+				String loginUser = cookieService.decrypt(login);
+				if (StringUtils.isNotBlank(loginUser)
+						&& user.equals(loginUser.substring(0,
+								loginUser.length() - 1))) {
 					request.setAttribute("user", CookieConstant.userName);
 					return true;
 				}
@@ -76,10 +81,10 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
 			response.sendRedirect(request.getRequestURL() + loginUrl);
 			return true;
 		}
-		int endIndex = request.getRequestURL().length() - request.getRequestURI().length();
+		int endIndex = request.getRequestURL().length()
+				- request.getRequestURI().length();
 		String url = request.getRequestURL().substring(0, endIndex);
 		response.sendRedirect(url + loginUrl);
 		return false;
 	}
-
 }

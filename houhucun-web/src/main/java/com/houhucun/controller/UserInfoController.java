@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,11 +27,21 @@ public class UserInfoController {
 	@Resource(name = "userInfoService")
 	private UserInfoService userInfoService;
 
-	@Resource(name="cookieService")
+	@Resource(name = "cookieService")
 	private CookieService cookieService;
+
 	@RequestMapping("list")
 	public String getUserInfo(HttpServletResponse response,
-			HttpServletRequest request,ModelMap map, UserInfoQueryVO userInfoQuery) {
+			HttpServletRequest request, ModelMap map,
+			UserInfoQueryVO userInfoQuery) {
+
+		String usr = cookieService.getCookieUser(request);
+		String role = cookieService.getUserRole(request);
+
+		if (Integer.valueOf(role) != 1) {
+			userInfoQuery.setCreateAccount(usr);
+		}
+
 		int counts = userInfoService.countUser(userInfoQuery);
 		Page page = new Page();
 		if (userInfoQuery.getPageNo() == 0) {
@@ -53,7 +64,9 @@ public class UserInfoController {
 
 	@RequestMapping("add")
 	@ResponseBody
-	public Object add(UserInfo userInfo) {
+	public Object add(UserInfo userInfo, HttpServletRequest request) {
+		String usr = cookieService.getCookieUser(request);
+		userInfo.setCreateAccount(usr);
 		userInfo.setPassword(UserInitUtil.getInitPassword());
 		return userInfoService.addUserInfo(userInfo);
 	}
@@ -62,14 +75,40 @@ public class UserInfoController {
 	@ResponseBody
 	public Object resetPassword(UserInfo userInfo) {
 		userInfo.setPassword(UserInitUtil.getInitPassword());
-		return userInfoService.addUserInfo(userInfo);
+		if (userInfoService.updateUserInfoPwd(userInfo)) {
+			return "ok";
+		}
+		return "error";
+	}
+
+	@RequestMapping("preupdatePwd")
+	public Object preupdatePassword(ModelMap map, UserInfo userInfo,
+			HttpServletRequest request) {
+		return "/userinfo/updatepwd";
 	}
 
 	@RequestMapping("updatePwd")
 	@ResponseBody
-	public Object updatePassword(UserInfo userInfo) {
-		userInfo.setPassword(UserInitUtil.getPassword(userInfo.getPassword()));
-		return userInfoService.addUserInfo(userInfo);
+	public Object updatePassword(UserInfo userInfo, HttpServletRequest request) {
+		if (userInfo == null || userInfo.getPassword() == null) {
+			return "error";
+		}
+		String usr = cookieService.getCookieUser(request);
+		UserInfo userOld = userInfoService.getUserInfoByAccount(usr);
+		if (userOld.getPassword().equals(
+				UserInitUtil.getPassword(userInfo.getPassword()))) {
+			userOld.setPassword(UserInitUtil.getPassword(userInfo
+					.getNewPassword()));
+			boolean flag = userInfoService.updateUserInfoPwd(userOld);
+			if (flag) {
+				return "ok";
+			} else {
+				return "error";
+			}
+		} else {
+			return "error";
+		}
+
 	}
 
 	@RequestMapping("update")
@@ -83,6 +122,13 @@ public class UserInfoController {
 	@ResponseBody
 	public Object get(@RequestParam(value = "userId") int userId) {
 		return userInfoService.getUserInfoById(userId);
+	}
+
+	@RequestMapping("getInfo")
+	public String getInfo(HttpServletRequest request, ModelMap map) {
+		map.put("userInfos", userInfoService.getUserInfoByAccount(cookieService
+				.getCookieUser(request)));
+		return "/userinfo/userInfo";
 	}
 
 	@RequestMapping("del")

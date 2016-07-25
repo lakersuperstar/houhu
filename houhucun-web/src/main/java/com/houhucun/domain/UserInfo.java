@@ -23,6 +23,10 @@ public class UserInfo {
 
 	private int yn;
 
+	private String createAccount;
+
+	private String newPassword;
+
 	public int getUserId() {
 		return userId;
 	}
@@ -102,4 +106,21 @@ public class UserInfo {
 	public void setYn(int yn) {
 		this.yn = yn;
 	}
+
+	public String getCreateAccount() {
+		return createAccount;
+	}
+
+	public void setCreateAccount(String createAccount) {
+		this.createAccount = createAccount;
+	}
+
+	public String getNewPassword() {
+		return newPassword;
+	}
+
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
+	}
+
 }

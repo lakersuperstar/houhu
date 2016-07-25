@@ -18,8 +18,10 @@ public interface UserInfoService {
 	boolean updateUserInfo(UserInfo userInfo);
 
 	UserInfo getUserInfoById(int userId);
-	
+
 	UserInfo getUserInfoByAccount(String account);
 
-	boolean checkUser(UserInfo userInfo);
+	UserInfo checkUser(UserInfo userInfo);
+
+	boolean updateUserInfoPwd(UserInfo userInfo);
 }

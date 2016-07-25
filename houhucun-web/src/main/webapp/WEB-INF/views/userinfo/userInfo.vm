@@ -1,0 +1,78 @@
+ #set($staticPath="$request.contextPath/assets")
+#set($ctx="$request.contextPath")
+<script
+	src="$staticPath/js/lib/bootstrap-modal/2.2.4/bootstrap-modalmanager.js"></script>
+<script
+	src="$staticPath/js/lib/bootstrap-modal/2.2.4/bootstrap-modal.js"></script>
+
+<div class="row">
+	<div class="span9">
+		<div class="row">
+			<div class="span3">账号</div>
+			<div class="span6">$!{userInfos.userAccount}</div>
+		</div>
+		<div class="row">
+			<div class="span3">姓名</div>
+			<div class="span6">$!{userInfos.userName}</div>
+		</div>
+		<div class="row">
+			<div class="span3">手机号</div>
+			<div class="span6">$!{userInfos.mobile}</div>
+		</div>
+		<div class="row">
+			<div class="span3">联系地址</div>
+			<div class="span6">$!{userInfos.address}</div>
+		</div>
+		<div class="row">
+			<div class="span3">角色</div>
+			<div class="span6">#if($!{userInfos.role} == 1) 管理员#end
+				#if($!{userInfos.role} == 2) 操作员#end #if($!{userInfos.role} == 3)
+				客户#end</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+<!--修改库房 弹出层-->
+<div id="channel05" class="modal hide fade" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="false">
+	<div class="modal-header">
+		<h3 id="myModalLabel">用户信息</h3>
+		<a class="close" data-dismiss="modal" aria-hidden="true"
+			href="javascript:void();"></a>
+	</div>
+	<div class="modal-body">
+		<div class="row cl">
+			<label class="form-label col-xs-3">账号：</label>
+			<div class="formControls col-xs-5">$!{userInfos.account}</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-3">姓名：</label>
+			<div class="formControls col-xs-5"></div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-3">手机号：</label>
+			<div class="formControls col-xs-5">
+				<input type="text" class="input-text require number" name="mobile">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-3">联系地址：</label>
+			<div class="formControls col-xs-5">
+				<input type="text" class="input-text require" name="address">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-3">角色：</label>
+			<div class="formControls col-xs-5">
+				#if($!{nowuser.role} == 1) <input type="radio" class="input"
+					name="role" value="1">管理员 <input type="radio" class="input"
+					name="role" value="2" checked="true">操作员 #end <input
+					type="radio" class="input" name="role" value="3">客戶
+			</div>
+		</div>
+	</div>
+</div>
+<!--修改库房 end-->

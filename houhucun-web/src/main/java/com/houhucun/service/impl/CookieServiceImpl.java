@@ -43,4 +43,19 @@ public class CookieServiceImpl implements CookieService {
 		return null;
 	}
 
+	@Override
+	public String getUserRole(HttpServletRequest request) {
+		Cookie[] cks = request.getCookies();
+		if (cks != null && cks.length > 0) {
+			for (Cookie ck : cks) {
+				if (ck.getName().equalsIgnoreCase(CookieConstant.login)) {
+					String loginUser = this.decrypt(ck.getValue());
+					return loginUser.substring(loginUser.length() - 1,
+							loginUser.length());
+				}
+			}
+		}
+		return null;
+
+	}
 }

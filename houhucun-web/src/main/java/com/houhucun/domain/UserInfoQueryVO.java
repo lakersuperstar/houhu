@@ -28,6 +28,7 @@ public class UserInfoQueryVO extends PageQuery {
 	private String userAccount;
 
 	
+	private String createAccount;
 
 	public String getMobile() {
 		return mobile;
@@ -59,6 +60,14 @@ public class UserInfoQueryVO extends PageQuery {
 
 	public void setUserAccount(String userAccount) {
 		this.userAccount = userAccount;
+	}
+
+	public String getCreateAccount() {
+		return createAccount;
+	}
+
+	public void setCreateAccount(String createAccount) {
+		this.createAccount = createAccount;
 	}
 
 	

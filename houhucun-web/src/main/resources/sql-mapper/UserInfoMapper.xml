@@ -8,6 +8,9 @@
 		<result column="user_account" property="userAccount" jdbcType="VARCHAR" />
 		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
 		<result column="address" property="address" jdbcType="VARCHAR" />
+
+		<result column="create_account" property="createAccount"
+			jdbcType="VARCHAR" />
 		<result column="role" property="role" jdbcType="TINYINT" />
 		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
 		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
@@ -17,7 +20,7 @@
 		user_id, user_name, password, user_account, mobile,
 		address, role,
 		create_date, update_date,
-		yn
+		yn,create_account
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
@@ -26,13 +29,14 @@
 		from user_info
 		where user_id = #{userId,jdbcType=INTEGER}
 	</select>
-	<select id="selectByAccount" resultMap="BaseResultMap" parameterType="java.lang.String">
-	select
+	<select id="selectByAccount" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
 		<include refid="Base_Column_List" />
 		from user_info
 		where user_account = #{userAccount,jdbcType=VARCHAR}
 	</select>
-	
+
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from
 		user_info
@@ -44,14 +48,15 @@
 		user_account, mobile, address,
 		role, create_date,
 		update_date,
-		yn)
+		yn,create_account)
 		values (#{userName,jdbcType=VARCHAR},
 		#{password,jdbcType=VARCHAR},
 		#{userAccount,jdbcType=VARCHAR},
 		#{mobile,jdbcType=VARCHAR},
 		#{address,jdbcType=VARCHAR},
 		#{role,jdbcType=TINYINT}, now(), #{updateDate,jdbcType=TIMESTAMP},
-		1)
+		1,
+		#{createAccount,jdbcType=VARCHAR})
 	</insert>
 	<insert id="insertSelective" parameterType="com.houhucun.domain.UserInfo">
 		insert into user_info
@@ -192,6 +197,9 @@
 				and address like CONCAT(CONCAT('%',
 				#{address,jdbcType=VARCHAR}),'%')
 			</if>
+			<if test="createAccount != null and createAccount != ''">
+				and create_account = #{createAccount}
+			</if>
 		</where>
 	</select>
 
@@ -217,6 +225,9 @@
 				and address like CONCAT(CONCAT('%',
 				#{address,jdbcType=VARCHAR}),'%')
 			</if>
+			<if test="createAccount != null and createAccount != ''">
+				and create_account = #{createAccount}
+			</if>
 		</where>
 		limit #{startrownum} , #{pageSize}
 	</select>
@@ -232,5 +243,15 @@
 		from user_info
 		where user_account = #{userAccount,jdbcType=VARCHAR}
 	</select>
+
+	<update id="updatePwd" parameterType="com.houhucun.domain.UserInfo">
+		update user_info
+		<set>
+			<if test="password != null and password != ''">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where user_id = #{userId,jdbcType=INTEGER}
+	</update>
 
 </mapper>

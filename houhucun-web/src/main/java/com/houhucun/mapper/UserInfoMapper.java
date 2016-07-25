@@ -13,7 +13,7 @@ public interface UserInfoMapper {
 	int insertSelective(UserInfo record);
 
 	UserInfo selectByPrimaryKey(int userId);
-	
+
 	UserInfo selectByAccount(String account);
 
 	int updateByPrimaryKeySelective(UserInfo record);
@@ -23,7 +23,9 @@ public interface UserInfoMapper {
 	List<UserInfo> findByParam(UserInfoQueryVO query);
 
 	int countUserByParam(UserInfoQueryVO query);
-	
+
 	UserInfo checkUser(UserInfo record);
+
+	int updatePwd(UserInfo record);
 
 }

@@ -13,6 +13,8 @@ public class ArticleListQueryVO extends PageQuery {
 
 	private String title;
 
+	private String createAccount;
+
 	public String getName() {
 		return name;
 	}
@@ -35,6 +37,14 @@ public class ArticleListQueryVO extends PageQuery {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public String getCreateAccount() {
+		return createAccount;
+	}
+
+	public void setCreateAccount(String createAccount) {
+		this.createAccount = createAccount;
 	}
 
 }

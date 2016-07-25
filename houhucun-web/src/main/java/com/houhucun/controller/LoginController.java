@@ -30,17 +30,22 @@ public class LoginController {
 
 	@RequestMapping("/submit")
 	@ResponseBody
-	public Object login(HttpServletResponse response, HttpServletRequest request, LoginVO loginvo) {
+	public Object login(HttpServletResponse response,
+			HttpServletRequest request, LoginVO loginvo) {
 		UserInfo userInfo = new UserInfo();
 		userInfo.setUserAccount(loginvo.getAccount());
 		userInfo.setPassword(MD5Util.getMD5Code(loginvo.getPassword()));
-		boolean flag = userInfoService.checkUser(userInfo);
+		UserInfo userInfoNew = userInfoService.checkUser(userInfo);
+		boolean flag = userInfo.getPassword().equals(userInfoNew.getPassword());
 		LoginResult loginresult = new LoginResult();
 		if (flag) {
-			Cookie cookie = new Cookie(CookieConstant.userName, loginvo.getAccount());
+			Cookie cookie = new Cookie(CookieConstant.userName,
+					loginvo.getAccount());
 			cookie.setMaxAge(3600 * 24 * 7);
 			cookie.setPath("/");
-			Cookie cookie2 = new Cookie(CookieConstant.login, cookieService.encrypt(loginvo.getAccount()));
+			Cookie cookie2 = new Cookie(CookieConstant.login,
+					cookieService.encrypt(loginvo.getAccount()
+							+ userInfoNew.getRole()));
 			cookie2.setMaxAge(3600 * 24 * 7);
 			cookie2.setPath("/");
 			response.addCookie(cookie);
