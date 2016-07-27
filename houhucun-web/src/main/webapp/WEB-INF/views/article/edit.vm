@@ -215,15 +215,14 @@
 				"input[type='file']",
 				function() {
 					var filePath = $(this).val();
-
 					if (filePath.indexOf("jpg") != -1
 							|| filePath.indexOf("png") != -1) {
-
 						$("#addFirstNameForm").append($("#cover_file"));
 						var url = "$ctx/img/uploadFirst";
 						//提交请求处理的url  
 						var actionUrl = "ImageUpload.ashx";
-						//开始ajax操作  
+						//开始ajax操作 
+						var self=this;
 						$("#addFirstNameForm").ajaxSubmit({
 							type : "POST",//提交类型  
 							dataType : "json",//返回结果格式  
@@ -235,6 +234,9 @@
 									$("#faceImgDiv").show();
 									$("#faceImgShowId").attr("src", data2.url);
 									$("#faceImgId").val(data2.url);
+									$('.fileinput-button input').remove();
+									$("#addFirstNameForm #cover_file").remove();
+									$('.fileinput-button').append('<input id="cover_file" type="file" accept="image/x-png, image/gif, image/jpeg" name="cover">');
 								} else {
 									alert("上传失败!");
 								}
