@@ -71,7 +71,8 @@
 	<update id="updateYnById" parameterType="com.houhucun.domain.ArticleList">
 		update
 		article_list
-		set yn = #{yn},
+		set yn
+		= #{yn},
 		update_time = now()
 		where id=#{id}
 	</update>
@@ -81,8 +82,11 @@
 		select
 		count(1) as countNum from article_list
 		<where>
+			<if test="true">
+				yn =1
+			</if>
 			<if test="title != null and title != ''">
-				title like CONCAT(CONCAT('%',
+				and title like CONCAT(CONCAT('%',
 				#{title,jdbcType=VARCHAR}),'%')
 			</if>
 			<if test="type != 0">
@@ -99,6 +103,9 @@
 		<include refid="Base_Column_List" />
 		from article_list
 		<where>
+			<if test="true">
+				yn =1
+			</if>
 			<if test="title != null and title != ''">
 				title like CONCAT(CONCAT('%',
 				#{title,jdbcType=VARCHAR}),'%')

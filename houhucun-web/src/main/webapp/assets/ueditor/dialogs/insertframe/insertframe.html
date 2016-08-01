@@ -94,5 +94,17 @@
     $focus($G( "url" ));
 
 </script>
+<script>
+document.getElementById('url').addEventListener('blur',function(e){
+	var reg=/src="(.+)"/;
+	var value=this.value;
+	if(!reg.test(value)){
+		return false;
+	}
+	var newVal=value.match(reg)[1];
+	
+	this.value=newVal;
+})
+</script>
 </body>
 </html>

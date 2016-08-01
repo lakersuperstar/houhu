@@ -184,7 +184,7 @@
 							"rowspacingbottom", "lineheight", "|",
 							"insertorderedlist", "insertunorderedlist", "|",
 							"imagenone", "imageleft", "imageright",
-							"imagecenter" ] ]
+							"imagecenter","insertframe" ] ]
 		});
 		UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
 		UE.Editor.prototype.getActionUrl = function(action) {
