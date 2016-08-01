@@ -76,11 +76,11 @@
 			<mvc:mapping path="/article/**" />
 			<mvc:mapping path="/dicController/**" />
 			<mvc:mapping path="/img/**" />
-			<mvc:mapping path="/index/**" />
 			<mvc:mapping path="/productController/**" />
 			<mvc:mapping path="/userInfo/**" />
 			<mvc:exclude-mapping path="/show/**" />
 			<mvc:exclude-mapping path="/code/**" />
+			<mvc:exclude-mapping path="/index/**" />
 			<bean class="com.houhucun.interceptor.LoginHandlerInterceptor">
 			</bean>
 		</mvc:interceptor>

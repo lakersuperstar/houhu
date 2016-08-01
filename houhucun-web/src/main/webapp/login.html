@@ -30,8 +30,16 @@
 				showMesInfo("网络超时，请稍后再试", "error");
 			},
 			success : function(result) {
+				var r = eval('(' + result + ')');
+				if (r == null) {
+					alert("系统异常!");
+				}
+				if (r.flag == 0) {
+					alert(r.msg);
+				} else {
+					window.location = "/userInfo/getInfo";
+				}
 
-				window.location = "/userInfo/getInfo";
 			}
 
 		});
