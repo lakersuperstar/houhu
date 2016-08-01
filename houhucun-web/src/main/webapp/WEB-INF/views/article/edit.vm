@@ -20,26 +20,26 @@
 	function submit() {
 		var data = editor.getContent();
 		$("#infoId").val(data);
-		
+
 		var title = $("#titleId").val();
 		var writerId = $("#writerId").val();
 		var faceImgId = $("#faceImgId").val();
-		
-		if(title == ''){
+
+		if (title == '') {
 			alert("标题不能为空!");
 			return false;
 		}
-		
-		if(writerId == ''){
+
+		if (writerId == '') {
 			alert("作者不能为空!");
 			return false;
 		}
-		
-		if(faceImgId == ''){
+
+		if (faceImgId == '') {
 			alert("封面照片不能为空!");
 			return false;
 		}
-		
+
 		var id = $("#articleId").val();
 		if (id == null || id == '' || id == '-1') {
 			$("#articleId").val('-1');
@@ -64,10 +64,10 @@
 		}
 
 	}
-	
-	$(function(){
+
+	$(function() {
 		var al = "${al.faceImg}";
-		if(al.startsWith("http")){
+		if (al.startsWith("http")) {
 			$("#faceImgDiv").show();
 			$("#faceImgShowId").attr("src", al);
 		}
@@ -91,7 +91,8 @@
 										<input class="editor-input editor-author" placeholder="请输入作者"
 											name="writer" id="writerId" value="$!{al.writer}" type="text">
 										<input type="hidden" name="info" id="infoId" /> <input
-											type="hidden" name="faceImg" id="faceImgId" value="$!{al.faceImg}"/>
+											type="hidden" name="faceImg" id="faceImgId"
+											value="$!{al.faceImg}" />
 									</div>
 
 									<div class="editor-content-area">
@@ -176,7 +177,7 @@
 			elementPathEnabled : false,
 			toolbars : [
 					[ "more", "|", "fontsize", "|", "blockquote", "horizontal",
-							"|", "removeformat", "|", "insertvideo",
+							"|", "removeformat", "|", "insertframe",
 							"insertimage" ],
 					[ "bold", "italic", "underline", "forecolor", "backcolor",
 							"|", "justifyleft", "justifycenter",
@@ -184,7 +185,7 @@
 							"rowspacingbottom", "lineheight", "|",
 							"insertorderedlist", "insertunorderedlist", "|",
 							"imagenone", "imageleft", "imageright",
-							"imagecenter","insertframe" ] ]
+							"imagecenter" ] ]
 		});
 		UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
 		UE.Editor.prototype.getActionUrl = function(action) {
@@ -210,46 +211,63 @@
 
 		});
 
-		$(".fileinput-button").on(
-				"change",
-				"input[type='file']",
-				function() {
-					var filePath = $(this).val();
-					if (filePath.indexOf("jpg") != -1
-							|| filePath.indexOf("png") != -1) {
-						$("#addFirstNameForm").append($("#cover_file"));
-						var url = "$ctx/img/uploadFirst";
-						//提交请求处理的url  
-						var actionUrl = "ImageUpload.ashx";
-						//开始ajax操作 
-						var self=this;
-						$("#addFirstNameForm").ajaxSubmit({
-							type : "POST",//提交类型  
-							dataType : "json",//返回结果格式  
-							url : url,//请求地址  
-							data : {},//请求数据  
-							success : function(data) {//请求成功后的函数  
-								var data2 = eval(data);
-								if (data2 != null && data2.state == 'SUCCESS') {
-									$("#faceImgDiv").show();
-									$("#faceImgShowId").attr("src", data2.url);
-									$("#faceImgId").val(data2.url);
-									$('.fileinput-button input').remove();
-									$("#addFirstNameForm #cover_file").remove();
-									$('.fileinput-button').append('<input id="cover_file" type="file" accept="image/x-png, image/gif, image/jpeg" name="cover">');
-								} else {
-									alert("上传失败!");
-								}
-							},
-							error : function(data) {
-								alert(data);
-							},//请求失败的函数  
-							async : true
+		$(".fileinput-button")
+				.on(
+						"change",
+						"input[type='file']",
+						function() {
+							var filePath = $(this).val();
+							if (filePath.indexOf("jpg") != -1
+									|| filePath.indexOf("png") != -1) {
+								$("#addFirstNameForm").append($("#cover_file"));
+								var url = "$ctx/img/uploadFirst";
+								//提交请求处理的url  
+								var actionUrl = "ImageUpload.ashx";
+								//开始ajax操作 
+								var self = this;
+								$("#addFirstNameForm")
+										.ajaxSubmit(
+												{
+													type : "POST",//提交类型  
+													dataType : "json",//返回结果格式  
+													url : url,//请求地址  
+													data : {},//请求数据  
+													success : function(data) {//请求成功后的函数  
+														var data2 = eval(data);
+														if (data2 != null
+																&& data2.state == 'SUCCESS') {
+															$("#faceImgDiv")
+																	.show();
+															$("#faceImgShowId")
+																	.attr(
+																			"src",
+																			data2.url);
+															$("#faceImgId")
+																	.val(
+																			data2.url);
+															$(
+																	'.fileinput-button input')
+																	.remove();
+															$(
+																	"#addFirstNameForm #cover_file")
+																	.remove();
+															$(
+																	'.fileinput-button')
+																	.append(
+																			'<input id="cover_file" type="file" accept="image/x-png, image/gif, image/jpeg" name="cover">');
+														} else {
+															alert("上传失败!");
+														}
+													},
+													error : function(data) {
+														alert(data);
+													},//请求失败的函数  
+													async : true
+												});
+							} else {
+								alert("图片格式不对!");
+							}
 						});
-					} else {
-						alert("图片格式不对!");
-					}
-				});
 
 		function delFaceImgId() {
 			$("#faceImgId").val("");
