@@ -90,7 +90,6 @@ public class CodeController {
 		String requestUrl = url + "/code/getHtml?cid=" + icvo.getCid()
 				+ "&title=" + icvo.getTitle() + "&desc=" + icvo.getDesc()
 				+ "&radio=" + icvo.getInlineRadioOptions();
-		System.out.println(requestUrl);
 		ImageRenderer render = new ImageRenderer();
 		response.reset();
 		String fileName = RandomStringUtils.randomAlphanumeric(20) + ".png";
