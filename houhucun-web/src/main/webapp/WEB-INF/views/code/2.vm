@@ -1,6 +1,6 @@
 #set($layout="emptylayout.vm") #set($ctx="$request.contextPath")
 <div
-	style="width: 462px; height: 330px; background: #fff; border: 1px solid #fff; position: relative; left: 19px;">
+	style="width: 462px; height: 330px; background: #fff; border: 0px solid #fff; position: relative; left: 19px;">
 	<div style='margin: 0; padding: 0; float: left; width: 252px;'>
 		<h2
 			style="margin-top: 81px; font-size: 21px; text-align: center; color: #000000">

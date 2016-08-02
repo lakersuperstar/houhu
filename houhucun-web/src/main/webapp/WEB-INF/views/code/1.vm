@@ -4,9 +4,9 @@
 <head>
 <meta charset="UTF-8" />
 </head>
-<body>
+<body >
 	<div
-		style='height: 462px; width: 330px; background: #fff; border: 1px solid #fff'>
+		style='height: 462px; width: 330px; background: #fff; border: 0px solid #fff'>
 		<div style='margin: 0; padding: 0; align: center; text-align: center;'>
 			<h2
 				style='margin-top: 55px; font-size: 21px; text-align: center; color: #333'>
