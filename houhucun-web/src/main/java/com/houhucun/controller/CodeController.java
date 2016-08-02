@@ -75,6 +75,7 @@ public class CodeController {
 		String url = request.getRequestURL().toString().substring(0, request.getRequestURL().toString().indexOf(request.getRequestURI()));
 		String requestUrl = url + "/code/getHtml?cid=" + icvo.getCid() + "&title=" + icvo.getTitle() + "&desc=" + icvo.getDesc() + "&radio=" + icvo.getInlineRadioOptions();
 		ImageRenderer render = new ImageRenderer();
+//		render.setMediaType("print");
 		Dimension size = this.getDimension(icvo.getInlineRadioOptions());
 		render.setWindowSize(size, false);
 		response.reset();
