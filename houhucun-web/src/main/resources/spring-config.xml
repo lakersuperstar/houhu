@@ -29,5 +29,6 @@
 			expression="com\.*\.controller" />
 	</context:component-scan>
 	<import resource="/spring/spring-config-jdbc.xml" />
+	<import resource="/spring/spring-config-service.xml" />
 
 </beans>
