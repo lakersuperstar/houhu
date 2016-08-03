@@ -127,7 +127,7 @@
 		,
 		<include refid="Blob_Column_List" />
 		from article_list
-		where id = #{id}
+		where id = #{id} and yn = 1
 	</select>
 	<delete id="del" parameterType="java.lang.Integer">
 		update article_list set yn = 0
