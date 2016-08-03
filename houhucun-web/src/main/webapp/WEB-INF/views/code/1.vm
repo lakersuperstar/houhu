@@ -4,12 +4,13 @@
 <head>
 <meta charset="UTF-8" />
 </head>
-<body>
+<body background="#fff">
 	<div
 		style='height: 462px; width: 330px; background: #fff; border: 0px solid #fff'>
 		<div style='margin: 0; padding: 0; align: center; text-align: center;'>
+			<br>
 			<h2
-				style='margin-top: 55px; font-size: 21px; text-align: center; color: #333'>
+				style='margin-top: 0px; font-size: 21px; text-align: center; color: #333; height: 21px;'>
 				<span style='color: #000000'>${title}</span>
 			</h2>
 			<img src='${ctx}/code/getIcon?cid=${cid}'

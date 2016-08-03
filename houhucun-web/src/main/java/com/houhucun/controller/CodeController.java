@@ -97,8 +97,8 @@ public class CodeController {
 	}
 	
 	private Dimension getDimension(int radio) {
-		if (radio == 1) { return new Dimension(330, 462); }
-		if (radio == 2) { return new Dimension(462, 330); }
+		if (radio == 1) { return new Dimension(320, 400); }
+		if (radio == 2) { return new Dimension(400, 320); }
 		return new Dimension(500, 500);
 	}
 }
