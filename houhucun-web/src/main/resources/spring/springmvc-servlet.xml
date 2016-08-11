@@ -81,6 +81,7 @@
 			<mvc:exclude-mapping path="/show/**" />
 			<mvc:exclude-mapping path="/code/**" />
 			<mvc:exclude-mapping path="/index/**" />
+			<mvc:exclude-mapping path="/m/**" />
 			<bean class="com.houhucun.interceptor.LoginHandlerInterceptor">
 			</bean>
 		</mvc:interceptor>

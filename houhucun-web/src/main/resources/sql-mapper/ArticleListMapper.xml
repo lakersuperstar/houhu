@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.houhucun.mapper.ArticleListMapper">
+
 	<resultMap id="BaseResultMap" type="com.houhucun.domain.ArticleList">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="user_id" property="userId" jdbcType="INTEGER" />
@@ -15,6 +16,23 @@
 		<result column="summary" property="summary" jdbcType="VARCHAR" />
 		<result column="create_account" property="createAccount"
 			jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap id="mobileResultMap" type="com.houhucun.domain.ArticleListMobile">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="product_id" property="productId" jdbcType="INTEGER" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="writer" property="writer" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="yn" property="yn" jdbcType="INTEGER" />
+		<result column="face_img" property="faceImg" jdbcType="VARCHAR" />
+		<result column="summary" property="summary" jdbcType="VARCHAR" />
+		<result column="create_account" property="createAccount"
+			jdbcType="VARCHAR" />
+		<result column="count_num" property="countNum" jdbcType="BIGINT" />
 	</resultMap>
 	<resultMap id="ResultMapWithBLOBs" type="com.houhucun.domain.ArticleList"
 		extends="BaseResultMap">
@@ -107,7 +125,7 @@
 				yn =1
 			</if>
 			<if test="title != null and title != ''">
-				title like CONCAT(CONCAT('%',
+				and title like CONCAT(CONCAT('%',
 				#{title,jdbcType=VARCHAR}),'%')
 			</if>
 			<if test="type != 0">
@@ -133,5 +151,37 @@
 		update article_list set yn = 0
 		where id = #{id}
 	</delete>
+
+	<select id="selectByParamForMobile" parameterType="com.houhucun.domain.ArticleListQueryForMobile"
+		resultMap="mobileResultMap">
+		SELECT
+		al.id,al.user_id,al.title,al.writer,al.face_img
+		,ac.count_num
+		FROM
+		article_list AS al LEFT JOIN article_count AS
+		ac ON al.id =
+		ac.article_id
+		<where>
+			<if test="true">
+				al.yn =1
+			</if>
+			<if test="title != null and title != ''">
+				and al.title like CONCAT(CONCAT('%',
+				#{title,jdbcType=VARCHAR}),'%')
+			</if>
+		</where>
+		<if test='sortParam == "1"'>
+			ORDER BY
+			ac.count_num DESC
+		</if>
+		<if test='sortParam == "0"'>
+			ORDER BY
+			ac.count_num
+		</if>
+		limit #{start},#{size}
+
+
+	</select>
+
 
 </mapper>
