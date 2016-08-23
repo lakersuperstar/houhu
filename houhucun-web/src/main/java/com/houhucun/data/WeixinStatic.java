@@ -48,7 +48,7 @@ class ExecuteRunnable implements Runnable {
 					WeixinToken token = JsonSerializeUtil.parserJson2Object(tokenStr, WeixinToken.class);
 					if (token != null && token.getAccess_token() != null && !"".equals(token.getAccess_token())) {
 						TokenStaticData.token = token.getAccess_token();
-						TokenStaticData.expire_in = System.currentTimeMillis() + 1000 * token.getExpires_in();
+						TokenStaticData.expire_in = System.currentTimeMillis() + 1000 * token.getExpires_in() - 1000 * 60 * 5;
 					}
 				}
 			} catch (Exception e) {
@@ -65,7 +65,7 @@ class ExecuteRunnable implements Runnable {
 					WeixinTicket ticket = JsonSerializeUtil.parserJson2Object(ticketStr, WeixinTicket.class);
 					if (ticket != null && ticket.getTicket() != null && !"".equals(ticket.getTicket())) {
 						JsticketStaticData.jsticket = ticket.getTicket();
-						JsticketStaticData.expire_in = System.currentTimeMillis() + 1000 * ticket.getExpires_in();
+						JsticketStaticData.expire_in = System.currentTimeMillis() + 1000 * ticket.getExpires_in() - 1000 * 60 * 5;
 					}
 				}
 			} catch (Exception e) {
