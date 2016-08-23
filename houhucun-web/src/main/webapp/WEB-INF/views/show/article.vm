@@ -15,10 +15,12 @@
 	type="text/css" />
 <script language="javascript" type="text/javascript"
 	src="$staticPath/js/jquery.min.js"></script>
+<script language="javascript" type="text/javascript"
+	src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <title>$!{article.title}</title>
 <style>
-body img{
-max-width:100%;
+body img {
+	max-width: 100%;
 }
 </style>
 </head>
@@ -31,10 +33,11 @@ max-width:100%;
 					<h2 class="rich_media_title" id="activity-name">
 						$!{article.title}</h2>
 					<div class="rich_media_meta_list">
-						<em id="post-date" class="rich_media_meta rich_media_meta_text" style="color:#8c8c8c;">$!date.format('yyyy-MM-dd
-							',$!article.createTime)</em> &nbsp;
-							 <a
-							class="rich_media_meta rich_media_meta_link rich_media_meta_nickname" style="text-decoration: none;color:#607fa6;"
+						<em id="post-date" class="rich_media_meta rich_media_meta_text"
+							style="color: #8c8c8c;">$!date.format('yyyy-MM-dd
+							',$!article.createTime)</em> &nbsp; <a
+							class="rich_media_meta rich_media_meta_link rich_media_meta_nickname"
+							style="text-decoration: none; color: #607fa6;"
 							href="javascript:void(0);" id="post-user">$!{article.writer}</a>
 						<span
 							class="rich_media_meta rich_media_meta_text rich_media_meta_nickname">$!{article.writer}</span>
@@ -53,9 +56,11 @@ max-width:100%;
 	</div>
 </body>
 <script>
-$(function(){
-	$('img').css({'height':'auto'});
-})
+	$(function() {
+		$('img').css({
+			'height' : 'auto'
+		});
+	})
 </script>
 </html>
 
