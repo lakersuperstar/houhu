@@ -48,8 +48,8 @@ import com.houhucun.util.ZxingUtils;
 @RequestMapping("/article")
 public class ArticleController {
 
-	private static Logger LOGGER = LoggerFactory
-			.getLogger(ArticleController.class);
+	
+	private static Logger LOGGER = LoggerFactory.getLogger(ArticleController.class);
 
 	@Resource(name = "articleListService")
 	private ArticleListService articleListService;

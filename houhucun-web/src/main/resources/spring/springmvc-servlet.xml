@@ -82,6 +82,7 @@
 			<mvc:exclude-mapping path="/code/**" />
 			<mvc:exclude-mapping path="/index/**" />
 			<mvc:exclude-mapping path="/m/**" />
+			<mvc:exclude-mapping path="/weixinConfig/**" />
 			<bean class="com.houhucun.interceptor.LoginHandlerInterceptor">
 			</bean>
 		</mvc:interceptor>
