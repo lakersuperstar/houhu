@@ -52,7 +52,7 @@ public class WeixinConfigController {
 			WeixinConfigStatic configStatic = this.getWeixinConfigStatic();
 			if (configStatic == null) { return false; }
 			try {
-				configVO.setSignature(WeixinUtil.getSignature(configStatic.getTicket(), timestamp + "", nonceStr, httpArticle + id));
+				configVO.setSignature(WeixinUtil.getSignature(configStatic.getTicket(), timestamp + "", nonceStr, httpArticle + id+"?from=singlemessage&isappinstalled=0"));
 			} catch (IOException e) {
 				LOGGER.error("生成签名出错|id|" + id, e);
 				return false;

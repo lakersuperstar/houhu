@@ -71,21 +71,17 @@ $(function(){
 		dataType:'json'
 	})
 	.success(function(res){
-		console.log(res);
 		wechatConfig(res)
 	});
 
 	//微信权限验证
 	var wechatConfig=function(config){
-		alert(JSON.stringify(config));
 		wx.config({
-			debug:true,
 		    appId: config.appId, 
 		    timestamp: config.timestamp, 
 		    nonceStr: config.nonceStr,
 		    signature: config.signature,
-		    jsAPilist:[]
-		    /**jsApiList: ['onMenuShareTimeline','onMenuShareTimeline']**/
+		    jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage']
 		});
 
 		//微信权限验证OK
@@ -94,16 +90,16 @@ $(function(){
 		})
 
 		wx.error(function(err){
-			alert(JSON.strignify(res))
 		})
 	};
 
 	//设置分享
 	var  wechatShare=function(obj){
 		var config={
+			title:obj.title,
 			imgUrl:obj.imgUrl,
-			
-			desc:'四季鲜果之家欢迎您'
+			desc:'点击查看更多信息！',
+			success:function(){}
 		};
 
 		wx.onMenuShareTimeline(config);
