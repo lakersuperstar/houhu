@@ -18,10 +18,12 @@ public class WeixinUtil {
 		 * **如果没有按照生成的key1=value&key2=value拼接的话会报错
 		 */
 		String[] paramArr = new String[] { "jsapi_ticket=" + jsapi_ticket, "timestamp=" + timestamp, "noncestr=" + nonce, "url=" + jsurl };
-		Arrays.sort(paramArr);
+	    Arrays.sort(paramArr);
 		// 将排序后的结果拼接成一个字符串
 		String content = paramArr[0].concat("&" + paramArr[1]).concat("&" + paramArr[2]).concat("&" + paramArr[3]);
 		String gensignature = null;
+		System.out.println(content);
+
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-1");
 			// 对拼接后的字符串进行 sha1 加密
@@ -63,6 +65,6 @@ public class WeixinUtil {
 		tempArr[0] = Digit[(mByte >>> 4) & 0X0F];
 		tempArr[1] = Digit[mByte & 0X0F];
 		String s = new String(tempArr);
-		return s;
+		return s.toLowerCase();
 	}
 }
