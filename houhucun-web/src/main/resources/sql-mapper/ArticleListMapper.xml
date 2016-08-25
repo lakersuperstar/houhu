@@ -155,7 +155,7 @@
 	<select id="selectByParamForMobile" parameterType="com.houhucun.domain.ArticleListQueryForMobile"
 		resultMap="mobileResultMap">
 		SELECT
-		al.id,al.user_id,al.title,al.writer,al.face_img
+		al.id,al.user_id,al.title,al.writer,al.face_img,al.summary
 		,ac.count_num
 		FROM
 		article_list AS al LEFT JOIN article_count AS

@@ -98,7 +98,7 @@ $(function(){
 		var config={
 			title:obj.title,
 			imgUrl:obj.imgUrl,
-			desc:'点击查看更多信息！',
+			desc:'',
 			success:function(){}
 		};
 

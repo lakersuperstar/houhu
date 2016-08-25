@@ -41,7 +41,11 @@ public class WeixinConfigController {
 		WeixinConfigVO configVO = new WeixinConfigVO();
 		try {
 			ArticleList al = articleListService.findArticleList(id);
-			configVO.setDesc(al.getSummary());
+			if (al.getSummary() == null || "".equals(al.getSummary().trim())) {
+				configVO.setDesc("点击可查看更多信息！");
+			} else {
+				configVO.setDesc(al.getSummary());
+			}
 			configVO.setImgUrl(al.getFaceImg());
 			configVO.setLink(httpArticle + id);
 			configVO.setTitle(al.getTitle());
@@ -52,7 +56,7 @@ public class WeixinConfigController {
 			WeixinConfigStatic configStatic = this.getWeixinConfigStatic();
 			if (configStatic == null) { return false; }
 			try {
-				configVO.setSignature(WeixinUtil.getSignature(configStatic.getTicket(), timestamp + "", nonceStr, httpArticle + id+"?from=singlemessage&isappinstalled=0"));
+				configVO.setSignature(WeixinUtil.getSignature(configStatic.getTicket(), timestamp + "", nonceStr, httpArticle + id + "?from=singlemessage&isappinstalled=0"));
 			} catch (IOException e) {
 				LOGGER.error("生成签名出错|id|" + id, e);
 				return false;

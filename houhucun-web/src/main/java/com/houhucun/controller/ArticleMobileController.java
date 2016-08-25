@@ -64,7 +64,7 @@ public class ArticleMobileController {
 				for (ArticleListMobile al : als) {
 					ArticleMobileVO amv = new ArticleMobileVO();
 					amv.setCount(al.getCountNum());
-					amv.setDesc(amv.getDesc());
+					amv.setDesc(al.getSummary());
 					amv.setHeadImg(al.getFaceImg());
 					amv.setLink(httpArticle + al.getId());
 					amv.setTitle(al.getTitle());
