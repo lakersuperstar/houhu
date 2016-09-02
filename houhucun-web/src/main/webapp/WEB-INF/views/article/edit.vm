@@ -183,7 +183,7 @@
 							"|", "justifyleft", "justifycenter",
 							"justifyright", "|", "rowspacingtop",
 							"rowspacingbottom", "lineheight", "|",
-							"insertorderedlist", "insertunorderedlist", "|",
+							"insertorderedlist", "insertunorderedlist", "|","link","|",
 							"imagenone", "imageleft", "imageright",
 							"imagecenter" ] ]
 		});
