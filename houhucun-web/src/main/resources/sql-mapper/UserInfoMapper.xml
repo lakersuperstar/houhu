@@ -217,7 +217,7 @@
 				user_account !='pipe'
 			</if>
 			<if test="userName != null ">
-				user_name like CONCAT(CONCAT('%',
+				and user_name like CONCAT(CONCAT('%',
 				#{userName,jdbcType=VARCHAR}),'%')
 			</if>
 			<if test="userAccount != null">
